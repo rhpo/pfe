@@ -1,0 +1,23 @@
+@startuml
+scale 1.2
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantBackgroundColor #EEF5FF
+skinparam sequenceParticipantBorderColor #3366CC
+
+actor "Lecturer" as P
+participant "System" as S
+database "DBMS" as DB
+
+P -> S : Submits a PFE topic\n(title, description, type, domains)
+activate S
+S -> S : Validates form data
+S -> DB : INSERT INTO pfe_subjects\n(title, description, group_type,\nproposer_id, status = 'pending')
+activate DB
+DB --> S : Confirmation
+deactivate DB
+S --> P : Topic successfully recorded
+S -> DB : INSERT INTO notifications\n(recipient_id, type = 'new_subject')
+activate DB
+deactivate DB
+deactivate S
+@enduml

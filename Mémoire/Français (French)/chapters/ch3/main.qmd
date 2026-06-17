@@ -1,0 +1,306 @@
+
+# Conception du Système et Modélisation {#sec-conception}
+
+## Introduction
+
+Ce chapitre constitue le cœur de la démarche d'ingénierie logicielle du présent mémoire.
+Fort du constat établi au chapitre précédent *(l'absence d'une solution numérique dédiée
+à la gestion des PFE dans le contexte universitaire algérien)*, il s'agit désormais de
+traduire ce constat en une conception système complète, structurée et rigoureusement
+spécifiée.
+
+Nous commencerons par définir les besoins du système, puis nous identifierons les
+acteurs concernés en associant à chacun ses besoins fonctionnels spécifiques. Ces besoins
+seront ensuite formalisés par une série de diagrammes UML (cas d'utilisation, classes,
+séquences et activité) afin d'offrir une représentation non ambiguë du comportement
+attendu du système.
+
+## Définition des Besoins
+
+Le système à développer doit couvrir l'intégralité du cycle de vie d'un Projet de Fin
+d'Études au sein d'un établissement universitaire algérien, en prenant pour cas d'usage
+concret l'ESST d'Alger. Les fonctionnalités identifiées sont les suivantes :
+
+- **Gestion des utilisateurs et authentification** : création et maintenance des comptes
+  (étudiants, enseignants, administrateurs, entreprises), authentification sécurisée et
+  gestion des rôles et permissions.
+- **Gestion des paramètres académiques** : administration des spécialités, domaines de
+  recherche, promotions et années académiques (périodes de soumission, nombre maximal
+  de vœux autorisés).
+- **Proposition et validation de sujets PFE** : soumission de sujets par les enseignants
+  ou entreprises partenaires, assignation de validateurs par l'administration et évaluation
+  des sujets (validé, accepté sous réserve, refusé).
+- **Catalogue de sujets et expression de vœux** : consultation des sujets validés par les
+  étudiants, filtrage par spécialité et domaine, et expression de vœux classés par ordre
+  de préférence.
+- **Gestion des candidatures** : consultation et traitement des candidatures par les
+  proposants de sujets (acceptation ou refus des étudiants candidats).
+- **Affectation PFE** : assignation des étudiants aux sujets, génération de codes PFE
+  uniques (ex : PFE-ISIL-2025-001), désignation du superviseur principal et du
+  co-superviseur le cas échéant.
+- **Suivi pédagogique** : planification de réunions d'avancement, rédaction de fiches de
+  suivi documentant la progression du projet (date, durée, type de réunion, observations).
+- **Dépôt du mémoire** : soumission de la version finale du mémoire par l'étudiant avant
+  la date limite fixée.
+- **Constitution des jurys et planification des soutenances** : sélection des membres du
+  jury (président et membre), confirmation de participation, fixation de la date, de
+  l'heure et de la salle.
+- **Notation et évaluation** : soumission des notes par les membres du jury (4 critères
+  sur 4 points chacun) et par le superviseur (critère 5 sur 4 points), calcul de la note
+  finale sur 20 par le jury lors de la délibération.
+- **Détermination des résultats** : attribution du résultat final par le jury lors de la
+  délibération (admis, corrections requises avec signalement des réserves, non admis),
+  archivage des PFE validés.
+- **Vérification des entreprises partenaires** : examen et validation des inscriptions
+  d'entreprises souhaitant proposer des sujets externes.
+- **Notifications** : envoi automatique de notifications lors des étapes critiques
+  (proposition, validation, affectation, planification, résultats).
+- **Statistiques et rapports** : génération de tableaux de bord, de plannings et de bilans
+  statistiques pour l'administration.
+- **Journal d'audit** : traçabilité complète des actions sensibles avec identification de
+  l'acteur, horodatage et métadonnées associées.
+
+## Acteurs du système et besoins fonctionnels
+
+L'analyse du processus PFE à l'ESST (cf. Chapitre II) a permis d'identifier quatre acteurs
+principaux. Pour chacun d'eux, nous détaillons ci-dessous les besoins fonctionnels qui
+seront traduits en diagrammes UML dans la section suivante.
+
+### L'étudiant
+
+L'étudiant est l'acteur central du cycle PFE. Ses besoins fonctionnels sont :
+
+- Consulter le catalogue de sujets validés, filtrés par spécialité et domaine d'intérêt.
+- Exprimer ses vœux en classant les sujets par ordre de préférence, dans la limite du
+  nombre de vœux autorisés par l'année académique.
+- Consulter son affectation PFE : sujet assigné, code PFE, encadrants désignés.
+- Consulter les fiches de suivi renseignées par son encadrant.
+- Soumettre le mémoire final avant la date limite fixée.
+- Consulter les résultats : planning de soutenance, composition du jury et note finale.
+
+### L'enseignant
+
+L'enseignant intervient selon plusieurs rôles complémentaires. Ses besoins fonctionnels
+sont regroupés par rôle :
+
+**En tant que proposant de sujet :**
+
+- Proposer des sujets PFE en précisant le titre, la description, le type de groupement
+  (monôme, binôme ou trinôme) et les domaines associés.
+- Gérer les sujets proposés et les sujets affectés.
+- Consulter les candidatures des étudiants intéressés par ses sujets.
+- Accepter ou refuser la participation des étudiants candidats.
+
+**En tant que validateur :**
+
+- Évaluer les sujets proposés par d'autres enseignants ou entreprises lorsque
+  l'administration l'assigne en tant que validateur.
+- Soumettre une décision (validé, accepté sous réserve, refusé) accompagnée d'un
+  commentaire justificatif.
+
+**En tant que superviseur :**
+
+- Assurer l'accompagnement pédagogique de l'étudiant tout au long du projet.
+- Renseigner les fiches de suivi lors de réunions régulières.
+- Soumettre l'évaluation de l'encadrant (critère 5, noté sur 4 points).
+- Signaler sa disponibilité ou indisponibilité temporaire.
+
+**En tant que membre du jury :**
+
+- Confirmer sa participation au jury de soutenance (en tant que président ou membre).
+- Noter un PFE selon quatre critères d'évaluation, chacun noté sur 4 points.
+
+### L'administration
+
+L'administration est le pivot organisationnel et décisionnel du système. Ses besoins
+fonctionnels sont :
+
+- Gérer les utilisateurs : créer et maintenir les profils des enseignants, étudiants,
+  entreprises et administrateurs, y compris par importation en lot.
+- Valider les entreprises partenaires souhaitant proposer des sujets externes.
+- Assigner deux enseignants validateurs pour chaque sujet PFE proposé.
+- Procéder aux affectations PFE en tenant compte des vœux et des places disponibles,
+  générer le code PFE unique et désigner les encadrants.
+- Constituer les jurys de soutenance en sélectionnant le président et le membre parmi
+  les enseignants disponibles.
+- Planifier les soutenances : fixer la date, l'heure et la salle.
+- Gérer les paramètres académiques : spécialités, domaines, promotions, années académiques.
+- Consulter les statistiques et exporter les rapports.
+
+### L'entreprise
+
+L'entreprise partenaire intervient en tant que proposant externe de sujets PFE. Ses besoins
+fonctionnels sont :
+
+- S'inscrire sur la plateforme et soumettre son profil à la vérification administrative.
+- Proposer des sujets PFE avec description du contexte professionnel.
+- Consulter les candidatures des étudiants pour ses sujets.
+- Accepter ou refuser les étudiants candidats.
+- Participer au suivi du PFE via les fiches de suivi.
+- Soumettre un rapport de correction à l'administration en cas de besoin.
+
+## Modélisation UML
+
+L'*Unified Modeling Language* (UML) est un langage de modélisation graphique standardisé
+par l'*Object Management Group* (OMG), utilisé pour spécifier, visualiser et documenter
+les systèmes logiciels [@booch2005]. Dans sa version 2.5, UML propose treize types de
+diagrammes répartis en deux catégories : les diagrammes de structure (classes, objets,
+composants) et les diagrammes de comportement (cas d'utilisation, séquence, activité)
+[@omg2017]. Dans le cadre de ce mémoire, nous utilisons quatre types de diagrammes :
+les cas d'utilisation pour capturer les exigences fonctionnelles, le diagramme de classes
+pour modéliser le domaine métier, les diagrammes de séquence pour décrire les interactions
+entre les acteurs, le système et la base de données, et les diagrammes d'activité pour
+représenter les flux de processus de bout en bout.
+
+### Diagrammes de cas d'utilisation
+
+#### Cas d'utilisation de l'étudiant
+
+La @fig-uc-etudiant représente l'ensemble des fonctionnalités accessibles à l'étudiant.
+Son périmètre est centré sur la consultation du catalogue, l'expression de vœux, le suivi
+de son affectation et la consultation des résultats.
+
+![Cas d'utilisation de l'étudiant](/diagrams/uc-etudiant.png){#fig-uc-etudiant width="85%" fig-pos="H"}
+
+#### Cas d'utilisation de l'enseignant
+
+L'enseignant intervient à travers plusieurs rôles : proposant de sujet, validateur,
+superviseur et membre du jury. La @fig-uc-enseignant couvre l'ensemble de ces
+responsabilités. La gestion des candidatures inclut nécessairement la proposition
+préalable d'un sujet PFE (relation *include*).
+
+![Cas d'utilisation de l'enseignant](/diagrams/uc-enseignant.png){#fig-uc-enseignant width="85%" fig-pos="H"}
+
+#### Cas d'utilisation de l'administration
+
+L'administration dispose du périmètre fonctionnel le plus étendu, comme illustré
+par la @fig-uc-admin. Elle orchestre l'ensemble du processus : validation des entreprises,
+assignation des validateurs, affectation, constitution des jurys et planification
+des soutenances.
+
+![Cas d'utilisation de l'administration](/diagrams/uc-administration.png){#fig-uc-admin width="85%" fig-pos="H"}
+
+#### Cas d'utilisation de l'entreprise
+
+L'entreprise partenaire intervient principalement dans la proposition de sujets externes
+et le suivi des PFE qui lui sont associés (@fig-uc-entreprise).
+
+![Cas d'utilisation de l'entreprise](/diagrams/uc-entreprise.png){#fig-uc-entreprise width="85%" fig-pos="H"}
+
+### Diagramme de classes
+
+La Figure `\ref{fig-dc-complet}`{=latex} présente le diagramme de classes complet du
+système. Il modélise l'ensemble des entités du domaine : la hiérarchie des profils
+utilisateurs (étudiant, enseignant, entreprise), le contexte académique (année
+académique, promotion, spécialité, domaine), les sujets PFE et leurs vœux, les
+affectations et le suivi pédagogique, ainsi que les entités liées à l'évaluation
+(jury, soutenance, notes et évaluation de l'encadrant).
+
+```{=latex}
+\newgeometry{a2paper, landscape, margin=1cm}
+\begin{landscape}
+\thispagestyle{empty}
+\centering
+\vspace*{\fill}
+\includegraphics[width=\linewidth,height=0.88\textheight,keepaspectratio]{diagrams/dc-classes-complet.png}
+\captionof{figure}{Diagramme de classes du système}
+\label{fig-dc-complet}
+\vspace*{\fill}
+\end{landscape}
+\restoregeometry
+```
+
+### Diagrammes de séquence
+
+Les diagrammes de séquence ci-dessous illustrent les interactions chronologiques entre
+l'acteur, le système et le SGBD pour les scénarios fonctionnels les plus critiques du
+processus PFE.
+
+#### Proposition d'un sujet PFE
+
+La @fig-seq-proposition décrit la soumission d'un sujet par un enseignant et son
+enregistrement dans la base de données.
+
+![Proposition d'un sujet](/diagrams/seq-proposition.png){#fig-seq-proposition width="90%" fig-pos="H"}
+
+#### Validation d'un sujet PFE
+
+La @fig-seq-validation décrit l'évaluation d'un sujet par un validateur assigné,
+la détermination du statut final selon les décisions des deux validateurs, et la
+notification de l'étudiant concerné.
+
+![Validation d'un sujet](/diagrams/seq-validation.png){#fig-seq-validation width="72%" fig-pos="H"}
+
+#### Vœux et affectation
+
+La @fig-seq-voeux décrit le parcours de l'étudiant depuis la consultation du catalogue
+de sujets validés jusqu'à l'enregistrement de ses vœux, avec vérification de la
+limite autorisée.
+
+![Vœux et affectation](/diagrams/seq-voeux-affectation.png){#fig-seq-voeux width="80%" fig-pos="H"}
+
+#### Constitution du jury et planification
+
+La @fig-seq-jury décrit la constitution du jury par l'administration et la
+planification logistique de la soutenance.
+
+![Constitution du jury et planification](/diagrams/seq-jury-planification.png){#fig-seq-jury width="80%" fig-pos="H"}
+
+#### Notation
+
+La @fig-seq-notation illustre la soumission des notes par les membres du jury et
+par le superviseur, suivie du calcul automatique de la note finale sur 20 par le
+système lors de la délibération.
+
+![Notation](/diagrams/seq-notation.png){#fig-seq-notation width="82%" fig-pos="H"}
+
+#### Résultats
+
+La @fig-seq-resultats décrit la détermination du résultat final par le président du
+jury lors de la délibération, selon trois issues possibles : admis, corrections
+requises (avec signalement des réserves) ou non admis.
+
+![Résultats](/diagrams/seq-resultats.png){#fig-seq-resultats width="70%" fig-pos="H"}
+
+### Diagrammes d'activité
+
+Les diagrammes d'activité ci-dessous représentent le flux de bout en bout du processus
+PFE, scindé en deux phases pour des raisons de lisibilité.
+
+La Figure `\ref{fig-act-proposition}`{=latex} couvre la première moitié du processus :
+proposition d'un sujet, validation (incluant le cas d'acceptation sous réserve avec
+levée des réserves avant confirmation), publication au catalogue, expression des vœux
+par les étudiants, sélection des candidats et affectation administrative.
+
+La @fig-act-suivi couvre la seconde moitié : réalisation des travaux, suivi pédagogique,
+dépôt du mémoire, constitution du jury, soutenance, puis délibération au cours de
+laquelle le jury calcule la note finale et détermine le résultat (admis, corrections
+requises avec signalement des réserves, ou non admis).
+
+```{=latex}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth,height=0.70\textheight,keepaspectratio]{diagrams/act-proposition-affectation.png}
+\caption{Activité - De la proposition à l'affectation}
+\label{fig-act-proposition}
+\end{figure}
+```
+
+![Activité - Du suivi aux résultats](/diagrams/act-suivi-resultats.png){#fig-act-suivi width="95%" fig-pos="H"}
+
+## Conclusion
+
+Ce chapitre a posé les fondements formels de la solution applicative proposée. Partant
+d'une identification précise des quatre acteurs du système (étudiant, enseignant,
+administration et entreprise), nous avons défini un ensemble de processus métier couvrant
+l'intégralité du cycle de vie d'un PFE : proposition de sujet, validation par des
+pairs, expression de vœux, affectation, suivi pédagogique, dépôt du mémoire, constitution
+du jury, soutenance et notation selon un barème à cinq critères sur 20 points.
+
+La modélisation UML qui en résulte (cas d'utilisation, classes, séquences et
+activité) offre une spécification non ambiguë du comportement attendu du système,
+constituant à la fois un contrat entre les parties prenantes et une feuille de route
+pour la phase d'implémentation.
+
+Le chapitre suivant s'attachera à traduire cette spécification en une application
+concrète, en détaillant les choix technologiques et les interfaces développées.

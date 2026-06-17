@@ -1,0 +1,56 @@
+@startuml
+scale 1.0
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantBackgroundColor #EEF5FF
+skinparam sequenceParticipantBorderColor #3366CC
+
+actor "Lecturer\n(Jury President)" as J
+participant "System" as S
+database "DBMS" as DB
+
+== Jury deliberation ==
+
+J -> S : Enters final result\n(passed / corrections required / failed)
+activate S
+
+S -> DB : SELECT final_grade\nFROM defenses WHERE id = ?
+activate DB
+DB --> S : Final grade
+deactivate DB
+
+alt Result: passed
+  S -> DB : UPDATE pfe_assignments\nSET status = 'validated'\nWHERE id = ?
+  activate DB
+  deactivate DB
+  S -> DB : UPDATE defenses\nSET result = 'admitted',\nstatus = 'done' WHERE id = ?
+  activate DB
+  DB --> S : Confirmation
+  deactivate DB
+  S -> DB : INSERT INTO notifications\n(recipient_id, type = 'pfe_admitted')
+  activate DB
+  deactivate DB
+else Result: corrections required
+  J -> S : Specifies conditions\nand corrections to make
+  S -> DB : UPDATE defenses\nSET result = 'corrections_required',\nstatus = 'done' WHERE id = ?
+  activate DB
+  DB --> S : Confirmation
+  deactivate DB
+  S -> DB : INSERT INTO notifications\n(student + supervisor,\ntype = 'corrections_required')
+  activate DB
+  deactivate DB
+else Result: failed
+  S -> DB : UPDATE pfe_assignments\nSET status = 'refused'\nWHERE id = ?
+  activate DB
+  deactivate DB
+  S -> DB : UPDATE defenses\nSET result = 'not_admitted',\nstatus = 'done' WHERE id = ?
+  activate DB
+  DB --> S : Confirmation
+  deactivate DB
+  S -> DB : INSERT INTO notifications\n(recipient_id,\ntype = 'pfe_not_admitted')
+  activate DB
+  deactivate DB
+end
+
+S --> J : Result recorded
+deactivate S
+@enduml

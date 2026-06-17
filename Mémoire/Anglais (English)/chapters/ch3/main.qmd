@@ -1,0 +1,296 @@
+
+# System Design and Modelling {#sec-conception}
+
+## Introduction
+
+This chapter constitutes the core of the software engineering approach of the present
+thesis. Drawing on the finding established in the previous chapter (the absence of a
+dedicated digital solution for PFE management in the Algerian university context), the
+task is now to translate this finding into a complete, structured, and rigorously specified
+system design.
+
+We will begin by defining the system requirements, then identify the actors involved and
+associate each one with their specific functional needs. These needs will then be
+formalised through a series of UML diagrams (use cases, classes, sequences, and activity
+diagrams) in order to provide an unambiguous representation of the expected system
+behaviour.
+
+## Requirements Definition
+
+The system to be developed must cover the entire lifecycle of a Final Year Project within
+an Algerian university institution, taking the ESST in Algiers as the concrete use case.
+The identified functionalities are as follows:
+
+- **User management and authentication**: creation and maintenance of accounts (students,
+  lecturers, administrators, companies), secure authentication, and role and permission
+  management.
+- **Academic parameter management**: administration of specialisations, research domains,
+  cohorts, and academic years (submission periods, maximum number of allowed preferences).
+- **PFE topic proposal and validation**: submission of topics by lecturers or partner
+  companies, assignment of validators by the administration, and topic evaluation
+  (validated, conditionally accepted, rejected).
+- **Topic catalogue and expression of preferences**: consultation of validated topics by
+  students, filtering by specialisation and domain, and expression of ranked preferences.
+- **Application management**: consultation and processing of applications by topic
+  proposers (acceptance or rejection of candidate students).
+- **PFE assignment**: assignment of students to topics, generation of unique PFE codes
+  (e.g. PFE-ISIL-2025-001), designation of the primary supervisor and co-supervisor where
+  applicable.
+- **Pedagogical supervision**: scheduling of progress meetings, writing of progress reports
+  documenting the project's advancement (date, duration, meeting type, observations).
+- **Thesis submission**: submission of the final thesis by the student before the set
+  deadline.
+- **Jury formation and defence scheduling**: selection of jury members (president and
+  member), participation confirmation, and setting of the date, time, and room.
+- **Grading and evaluation**: submission of grades by jury members (4 criteria, 4 points
+  each) and by the supervisor (criterion 5, 4 points), calculation of the final grade out
+  of 20 by the jury during deliberation.
+- **Result determination**: attribution of the final result by the jury during deliberation
+  (passed, corrections required with reservation statements, failed), archiving of validated
+  PFE projects.
+- **Partner company verification**: examination and validation of company registrations
+  wishing to propose external topics.
+- **Notifications**: automatic sending of notifications at critical stages (proposal,
+  validation, assignment, scheduling, results).
+- **Statistics and reports**: generation of dashboards, schedules, and statistical summaries
+  for the administration.
+- **Audit log**: complete traceability of sensitive actions with identification of the
+  actor, timestamp, and associated metadata.
+
+## System actors and functional requirements
+
+The analysis of the PFE process at the ESST (cf. Chapter II) identified four main actors.
+For each of them, we detail below the functional requirements that will be translated into
+UML diagrams in the following section.
+
+### The student
+
+The student is the central actor of the PFE lifecycle. Their functional requirements are:
+
+- Consult the catalogue of validated topics, filtered by specialisation and domain of
+  interest.
+- Express their preferences by ranking topics in order of preference, within the limit of
+  the number of preferences allowed for the academic year.
+- Consult their PFE assignment: assigned topic, PFE code, designated supervisors.
+- Consult the progress reports filled in by their supervisor.
+- Submit the final thesis before the set deadline.
+- Consult results: defence schedule, jury composition, and final grade.
+
+### The lecturer
+
+The lecturer intervenes in several complementary roles. Their functional requirements are
+grouped by role:
+
+**As a topic proposer:**
+
+- Propose PFE topics specifying the title, description, group type (individual, pair, or
+  trio) and associated domains.
+- Manage proposed topics and assigned topics.
+- Consult the applications of students interested in their topics.
+- Accept or reject candidate students.
+
+**As a validator:**
+
+- Evaluate topics proposed by other lecturers or companies when assigned as validator by
+  the administration.
+- Submit a decision (validated, conditionally accepted, rejected) accompanied by a
+  justification comment.
+
+**As a supervisor:**
+
+- Provide pedagogical support to the student throughout the project.
+- Fill in progress reports during regular meetings.
+- Submit the supervisor's evaluation (criterion 5, graded out of 4 points).
+- Report their availability or temporary unavailability.
+
+**As a jury member:**
+
+- Confirm participation in the defence jury (as president or member).
+- Grade a PFE according to four evaluation criteria, each graded out of 4 points.
+
+### The administration
+
+The administration is the organisational and decision-making hub of the system. Their
+functional requirements are:
+
+- Manage users: create and maintain profiles for lecturers, students, companies, and
+  administrators, including through batch import.
+- Validate partner companies wishing to propose external topics.
+- Assign two validator lecturers for each proposed PFE topic.
+- Carry out PFE assignments taking into account preferences and available slots, generate
+  the unique PFE code, and designate supervisors.
+- Form defence juries by selecting the president and member from available lecturers.
+- Schedule defences: set the date, time, and room.
+- Manage academic parameters: specialisations, domains, cohorts, academic years.
+- Consult statistics and export reports.
+
+### The company
+
+The partner company intervenes as an external proposer of PFE topics. Their functional
+requirements are:
+
+- Register on the platform and submit their profile for administrative verification.
+- Propose PFE topics with a description of the professional context.
+- Consult student applications for their topics.
+- Accept or reject candidate students.
+- Participate in PFE supervision through progress reports.
+- Submit a correction report to the administration if needed.
+
+## UML Modelling
+
+The *Unified Modeling Language* (UML) is a graphical modelling language standardised by
+the *Object Management Group* (OMG), used to specify, visualise, and document software
+systems [@booch2005]. In its version 2.5, UML proposes thirteen types of diagrams
+organised into two categories: structural diagrams (classes, objects, components) and
+behavioural diagrams (use cases, sequence, activity) [@omg2017]. In the context of this
+thesis, we use four types of diagrams: use cases to capture functional requirements, the
+class diagram to model the business domain, sequence diagrams to describe interactions
+between actors, the system, and the database, and activity diagrams to represent end-to-end
+process flows.
+
+### Use case diagrams
+
+#### Student use cases
+
+@fig-uc-etudiant represents all the functionalities accessible to the student. Their scope
+is centred on browsing the catalogue, expressing preferences, monitoring their assignment,
+and consulting results.
+
+![Student use cases](/diagrams/uc-etudiant.png){#fig-uc-etudiant width="85%" fig-pos="H"}
+
+#### Lecturer use cases
+
+The lecturer intervenes through several roles: topic proposer, validator, supervisor, and
+jury member. @fig-uc-enseignant covers all of these responsibilities. Application management
+necessarily includes the prior proposal of a PFE topic (*include* relationship).
+
+![Lecturer use cases](/diagrams/uc-enseignant.png){#fig-uc-enseignant width="85%" fig-pos="H"}
+
+#### Administration use cases
+
+The administration has the broadest functional scope, as illustrated by @fig-uc-admin.
+It orchestrates the entire process: company validation, validator assignment, student
+assignment, jury formation, and defence scheduling.
+
+![Administration use cases](/diagrams/uc-administration.png){#fig-uc-admin width="85%" fig-pos="H"}
+
+#### Company use cases
+
+The partner company intervenes primarily in proposing external topics and monitoring the
+PFE projects associated with it (@fig-uc-entreprise).
+
+![Company use cases](/diagrams/uc-entreprise.png){#fig-uc-entreprise width="85%" fig-pos="H"}
+
+### Class diagram
+
+Figure `\ref{fig-dc-complet}`{=latex} presents the complete class diagram of the system.
+It models all the domain entities: the hierarchy of user profiles (student, lecturer,
+company), the academic context (academic year, cohort, specialisation, domain), PFE topics
+and preferences, assignments and pedagogical supervision, as well as entities related to
+evaluation (jury, defence, grades, and supervisor evaluation).
+
+```{=latex}
+\newgeometry{a2paper, landscape, margin=1cm}
+\begin{landscape}
+\thispagestyle{empty}
+\centering
+\vspace*{\fill}
+\includegraphics[width=\linewidth,height=0.88\textheight,keepaspectratio]{diagrams/dc-classes-complet.png}
+\captionof{figure}{System class diagram}
+\label{fig-dc-complet}
+\vspace*{\fill}
+\end{landscape}
+\restoregeometry
+```
+
+### Sequence diagrams
+
+The sequence diagrams below illustrate the chronological interactions between the actor,
+the system, and the DBMS for the most critical functional scenarios of the PFE process.
+
+#### PFE topic proposal
+
+@fig-seq-proposition describes the submission of a topic by a lecturer and its recording
+in the database.
+
+![Topic proposal](/diagrams/seq-proposition.png){#fig-seq-proposition width="90%" fig-pos="H"}
+
+#### PFE topic validation
+
+@fig-seq-validation describes the evaluation of a topic by an assigned validator, the
+determination of the final status according to the decisions of both validators, and the
+notification of the concerned student.
+
+![Topic validation](/diagrams/seq-validation.png){#fig-seq-validation width="72%" fig-pos="H"}
+
+#### Preferences and assignment
+
+@fig-seq-voeux describes the student's journey from browsing the validated topic catalogue
+to recording their preferences, with verification of the allowed limit.
+
+![Preferences and assignment](/diagrams/seq-voeux-affectation.png){#fig-seq-voeux width="80%" fig-pos="H"}
+
+#### Jury formation and scheduling
+
+@fig-seq-jury describes the formation of the jury by the administration and the logistical
+scheduling of the defence.
+
+![Jury formation and scheduling](/diagrams/seq-jury-planification.png){#fig-seq-jury width="80%" fig-pos="H"}
+
+#### Grading
+
+@fig-seq-notation illustrates the submission of grades by jury members and the supervisor,
+followed by the automatic calculation of the final grade out of 20 by the system during
+deliberation.
+
+![Grading](/diagrams/seq-notation.png){#fig-seq-notation width="82%" fig-pos="H"}
+
+#### Results
+
+@fig-seq-resultats describes the determination of the final result by the jury president
+during deliberation, according to three possible outcomes: passed, corrections required
+(with reservation statements), or failed.
+
+![Results](/diagrams/seq-resultats.png){#fig-seq-resultats width="70%" fig-pos="H"}
+
+### Activity diagrams
+
+The activity diagrams below represent the end-to-end flow of the PFE process, split into
+two phases for readability.
+
+Figure `\ref{fig-act-proposition}`{=latex} covers the first half of the process: topic
+proposal, validation (including the case of conditional acceptance with clearance of
+conditions before confirmation), publication to the catalogue, expression of preferences
+by students, candidate selection, and administrative assignment.
+
+@fig-act-suivi covers the second half: project work, pedagogical supervision, thesis
+submission, jury formation, defence, and deliberation during which the jury calculates the
+final grade and determines the result (passed, corrections required with reservation
+statements, or failed).
+
+```{=latex}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth,height=0.70\textheight,keepaspectratio]{diagrams/act-proposition-affectation.png}
+\caption{Activity - From proposal to assignment}
+\label{fig-act-proposition}
+\end{figure}
+```
+
+![Activity - From supervision to results](/diagrams/act-suivi-resultats.png){#fig-act-suivi width="95%" fig-pos="H"}
+
+## Conclusion
+
+This chapter laid the formal foundations of the proposed application solution. Starting
+from a precise identification of the four system actors (student, lecturer, administration,
+and company), we defined a set of business processes covering the entire PFE lifecycle:
+topic proposal, peer validation, expression of preferences, assignment, pedagogical
+supervision, thesis submission, jury formation, defence, and grading according to a
+five-criterion rubric out of 20 points.
+
+The resulting UML modelling (use cases, classes, sequences, and activity diagrams)
+provides an unambiguous specification of the expected system behaviour, constituting both
+a contract between stakeholders and a roadmap for the implementation phase.
+
+The following chapter will focus on translating this specification into a concrete
+application, detailing the technology choices and the developed interfaces.

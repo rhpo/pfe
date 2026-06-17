@@ -1,0 +1,59 @@
+@startuml
+scale 1.0
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantBackgroundColor #EEF5FF
+skinparam sequenceParticipantBorderColor #3366CC
+
+actor "Enseignant\n(Validateur)" as V
+participant "Système" as S
+database "SGBD" as DB
+actor "Étudiant" as E
+
+V -> S : Consulte le sujet à évaluer
+activate S
+S -> DB : SELECT * FROM pfe_subjects\nWHERE id = ?
+activate DB
+DB --> S : Données du sujet
+deactivate DB
+S --> V : Affiche les détails du sujet
+deactivate S
+
+V -> S : Soumet sa décision\n(validé / accepté sous réserve / refusé)\navec commentaire
+activate S
+S -> DB : UPDATE pfe_subjects\nSET validator1_decision = ?,\nvalidator1_comment = ?\nWHERE id = ?
+activate DB
+DB --> S : Confirmation
+deactivate DB
+
+S -> DB : SELECT validator1_decision,\nvalidator2_decision\nFROM pfe_subjects WHERE id = ?
+activate DB
+DB --> S : Décisions
+deactivate DB
+
+alt Les deux validateurs valident
+  S -> DB : UPDATE pfe_subjects\nSET status = 'valide' WHERE id = ?
+  activate DB
+  deactivate DB
+  S -> DB : INSERT INTO notifications\n(proposant + étudiant,\ntype = 'subject_validated')
+  activate DB
+  deactivate DB
+  S --> E : Notification : sujet validé
+else Au moins un validateur refuse
+  S -> DB : UPDATE pfe_subjects\nSET status = 'refuse' WHERE id = ?
+  activate DB
+  deactivate DB
+  S -> DB : INSERT INTO notifications\n(proposant + étudiant,\ntype = 'subject_refused')
+  activate DB
+  deactivate DB
+  S --> E : Notification : sujet refusé
+else Accepté sous réserve
+  S -> DB : UPDATE pfe_subjects\nSET status = 'accepte_sous_reserve'\nWHERE id = ?
+  activate DB
+  deactivate DB
+  S -> DB : INSERT INTO notifications\n(proposant + étudiant,\ntype = 'subject_reserve')
+  activate DB
+  deactivate DB
+  S --> E : Notification : modifications requises
+end
+deactivate S
+@enduml

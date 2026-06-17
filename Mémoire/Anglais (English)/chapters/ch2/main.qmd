@@ -1,0 +1,551 @@
+# Study of Existing Solutions
+
+## Introduction
+
+This chapter analyses the existing solutions for academic management and, more specifically,
+for PFE management. We begin by establishing the conceptual framework of the PFE within
+the Algerian university system, describing its actors and process. We then survey the tools
+available on the market (LMS, dedicated platforms) and conduct an objective comparative
+study. A case study on the practices in use at the ESST allows us to measure the gap
+between what exists and what is actually needed. Finally, the synthesis of these findings
+justifies the proposal of a new dedicated solution.
+
+
+## The PFE in the Algerian university system
+
+### Nature and status by programme
+
+The nature and importance of the PFE differ according to the level of study:
+
+- **In the Licence programme:** the PFE is compulsory in certain specialisations. It is
+  treated as a graded module within semester 6 (S6) and constitutes a full teaching unit
+  (UE). Its duration is generally a few months and its workload is governed by the
+  regulatory texts of the MESRS [@mesrs2004 ; @mesrs2005guide].
+
+- **In the Master programme:** the PFE is compulsory and its grade represents the entirety
+  of the evaluation for the final semester (S10). It involves a significantly greater
+  workload, often linked to a company or a research laboratory. It gives rise to the writing
+  of a complete thesis and a formal defence before a jury [@mesrs2004].
+
+- **In the Engineering programme:** the PFE is also compulsory and occupies, in the
+  majority of universities, the final semester of the programme (S10), while the entire
+  fifth year is dedicated to the PFE in other universities or schools. It is generally
+  carried out in a company or within a research laboratory, and involves solving a concrete
+  technical problem related to the student's specialisation. It gives rise to the writing
+  of a thesis and a defence before a mixed jury composed of lecturers and professionals
+  [@mesrs2004].
+
+| Programme     | PFE Status            | Approximate Duration | Evaluation Method                |
+|---            |---                    |---                   |---                               |
+| Licence (LMD) | Module of S6          | 2 to 4 months        | Thesis + defence                 |
+| Master (LMD)  | Full semester (S10)   | 5 to 6 months        | Thesis + defence before jury     |
+| Engineering   | Full semester (S10)   | 5 to 6 months        | Thesis + defence before jury     |
+
+: PFE status by university programme in Algeria [@mesrs2004] {tbl-colwidths="[25,25,20,30]"}
+
+### Types of PFE
+
+According to the context in which it is carried out, a PFE can be classified into two
+main categories [@mesrs2004]:
+
+- **Internal PFE:** carried out within the university institution itself, under the
+  supervision of a lecturer-researcher or a member of the administration (e.g. a
+  department head). It generally addresses an academic problem or a direct application of
+  the teaching received.
+
+- **External PFE (or company-based):** carried out in an organisation external to the
+  university (private company, public body, administration...). The student is then
+  supervised both by a professional from the company (industrial supervisor or placement
+  tutor) and by a lecturer (academic supervisor or co-supervisor).
+
+
+## Actors of the PFE and their respective roles
+
+The completion of a PFE is a collaborative process involving several stakeholders whose
+roles are complementary and interdependent [@mesrs2004].
+
+### The student
+
+The student is the principal actor of the PFE. They initiate the search for a topic and
+are responsible for carrying out the work [@mesrs2004]. Their responsibilities include:
+
+- Identifying and choosing a PFE topic in line with their specialisation and interests.
+- Contacting lecturers who may supervise them, or responding to proposals made by
+  lecturers or companies.
+- Respecting the schedule defined with the supervisor and producing regular deliverables.
+- Writing a structured thesis in accordance with the institution's standards.
+- Preparing and presenting the oral defence before the jury.
+- Complying with the rules and objectives of the PFE.
+- Maintaining regular progress in their work.
+
+### The supervisor
+
+The academic supervisor plays the role of pedagogical and scientific mentor [@mesrs2005guide].
+
+They may be:
+
+- **A lecturer (Internal):** a lecturer internal to the institution.
+- **A company representative (External):** a professional from the company or organisation
+  where the PFE is being carried out.
+
+Their responsibilities consist of:
+
+- Proposing PFE topics.
+- Validating the relevance and feasibility of other PFE topics.
+- Providing regular monitoring of work progress (periodic meetings, corrections...).
+- Guiding the student in their methodological and scientific approach.
+- Evaluating the quality of the submitted thesis and participating in the defence jury.
+- Evaluating the overall execution of the PFE.
+
+### The administration
+
+The university administration (academic office, department, studies directorate) plays a
+fundamental logistical and regulatory role [@loi9905]. As illustrated by @fig-acteurs,
+it sits at the crossroads of interactions between the student and the supervisor:
+
+- Proposing PFE topics.
+- Defining and communicating the rules and procedures relating to the PFE (deadlines,
+  thesis format, jury composition...).
+- Collecting and validating topic proposals and supervisor-student assignments.
+- Scheduling defences and forming juries.
+- Archiving theses and updating results in university information systems.
+- Regularly evaluating the progress status of ongoing PFE projects.
+
+![The three PFE actors and their mutual interactions @esst](/images/trois-acteurs.png){#fig-acteurs width=55% fig-align="center"}
+
+
+## Stages of the PFE process
+
+The completion of a PFE follows a process structured in several successive phases
+[@mesrs2004]. This process, though variable from one institution to another, broadly
+follows these stages:
+
+1. **Topic proposal and search:** the student searches for topics by consulting lecturers
+   in their department, offers from partner companies, or announcements circulated by the
+   administration. In parallel, some lecturers or companies submit topic proposals directly
+   to the administration.
+2. **Matching and assignment:** once the topic is identified, the student is put in contact
+   with the prospective supervisor. In the case of an external PFE, a tripartite agreement
+   (student - company - university) is formalised [@mesrs2004].
+3. **Topic validation:** the proposed topic is submitted for validation to the pedagogical
+   coordinator or department head. This step ensures the coherence of the PFE with the
+   student's level of study and specialisation [@mesrs2005guide].
+4. **Project work:** the student conducts the planned activities (analysis, design,
+   development, experimentation...) under the supervision of their supervisor, according
+   to a schedule defined in advance.
+5. **Thesis writing:** the student writes a formal document describing the problem, the
+   methodology adopted, the results obtained, and the perspectives envisaged. This document
+   is reviewed and corrected by the supervisor [@mesrs2004].
+6. **Defence:** the student presents their work before a jury composed of lecturers and,
+   in the case of an external PFE, a representative of the company. A grade is awarded,
+   taking into account both the written thesis and the quality of the oral presentation
+   [@mesrs2004].
+
+```{mermaid}
+%%| label: fig-workflow-pfe
+%%| fig-cap: "Workflow of the PFE process: from proposal to defence @mesrs2004"
+%%| fig-width: 6.5
+
+flowchart LR
+    A([Topic Proposal]) --> B([Supervisor Assignment])
+    B --> C{Topic Validation}
+    C -- Rejected --> A
+    C -- Accepted --> D([Project Work])
+    D --> E([Thesis Writing])
+    E --> F([Defence])
+```
+
+
+## Case study: PFE management at the ESST
+
+In order to ground our analysis in a concrete institutional reality and to complement the
+panorama of existing solutions with field observation, we conducted a case study on the
+PFE management practices in use at the Ecole Superieure des Sciences et de la Technologie
+(ESST) in Algiers.
+
+### Presentation of the ESST
+
+The ESST is an Algerian university institution under the MESRS. It trains students in
+computer science and other specialisations such as pharmaceutical chemistry, electronics,
+and more, under the LMD system, and awards Licence (3 years) and Master (2 additional
+years) degrees @esst. Like the majority of mid-sized institutions in Algeria, the ESST
+does not currently have a dedicated digital platform for managing its pedagogical and
+administrative activities.
+
+### Current PFE management process at the ESST
+
+The observations presented below were gathered through interviews conducted with lecturers
+and internal stakeholders at the ESST.
+
+**From the student's perspective**
+
+A student who must complete their PFE has access to no centralised catalogue of available
+topics. They must therefore go around the department's **lecturers** to identify those
+who propose a topic or who agree to supervise one. They may also choose to search for a
+topic outside the institution, through **companies** or organisations. This search is
+carried out individually, often informally (direct contact in the corridors, sending
+personal emails, phone calls), with no structured framework. The student is thus heavily
+dependent on their personal network of contacts within or outside the institution, which
+creates inequalities in access to information.
+
+Once a preliminary agreement is reached (generally following a verbal agreement or an
+exchange of emails), the formalisation procedure begins. After the PFE form is distributed
+to all students, the student must fill it in (see @fig-fiche-pfe) and submit it to the
+supervisor for signature. Once signed, this form is physically submitted to the
+administration for registration. It is then subject to a validation process before the
+assignment is officially confirmed.
+
+![The PFE Form used at the ESST](/images/FichePFE-improved.png){#fig-fiche-pfe width="100%"}
+
+Once the supervisor's agreement is confirmed and the PFE officially launched, the student
+is required to document each working session by completing a progress report (see
+@fig-compte-rendu-pfe). This document constitutes a formal record of each meeting (whether
+in person or remote) by recording essential information such as the date, duration, and a
+summary of the points discussed.
+
+**From the lecturers' perspective**
+
+Lecturers may be approached directly by students or may themselves propose PFE topics, but
+these exchanges remain informal and non-centralised. In the absence of a dedicated system,
+they have no global visibility over requests or their supervision workload, which can lead
+to an imbalance in the distribution of students and a lack of transparency in topic
+allocation. For traceability purposes, the lecturer also fills in an identical copy of the
+PFE Progress Form, thus keeping a copy on the supervisor's side (see @fig-compte-rendu-pfe).
+
+It also happens that a lecturer proposes a topic without having previously contacted any
+students, which can lead to topics going unclaimed due to insufficient interest or
+visibility.
+
+![The Progress Form at the ESST](/images/FicheSuivi-B.png){#fig-compte-rendu-pfe width="100%"}
+
+**From the companies' perspective**
+
+When a company wishes to propose a PFE topic to ESST students, it must contact certain
+members of the administration (management, pedagogical coordinators) directly by email or
+phone. Standardised forms exist, but there is no online submission portal for these
+proposals. This means that company offers are not systematically communicated to all
+concerned students, generating an unequal distribution of opportunities.
+
+Conversely, when a student contacts a company themselves to complete their PFE there, it
+is the company that chooses and supervises the topic. The company then passes a standardised
+form to the student, who must fill it in and submit it to the administration.
+
+**From the administration's perspective**
+
+The administrative management of PFE projects relies entirely on standard office tools:
+supervisor-student assignments are recorded in Excel spreadsheets (see
+@fig-situation-globale), topic validations are communicated by email or on paper, and
+defence schedules are communicated via notice boards or group emails. There is no system
+allowing real-time tracking of PFE progress or automatic generation of official documents
+(certificates, defence minutes...).
+
+The validation of a PFE topic constitutes a key step in this process. Once the PFE form
+is submitted by the student, the PFE Coordinator (department head or pedagogical
+coordinator) forwards it to two lecturers belonging to the same scientific domain as the
+proposed topic. These two lecturers examine the topic sequentially: the first gives their
+opinion, then the form is passed to the second. At each step, three decisions are possible:
+the topic is validated without conditions, rejected and returned for revision, or
+conditionally accepted (e.g. topic **too detailed**, topic unclear, out of context, etc.)
+(meaning it is conditionally approved but cannot be officially used until all stated
+conditions have been resolved). Only after definitive validation by both lecturers, with
+no outstanding conditions, is the assignment officially confirmed.
+
+```{mermaid}
+%%| label: fig-validation-pfe
+%%| fig-width: 6.3
+%%| fig-cap: "PFE topic validation process at the ESST"
+
+flowchart LR
+    A([PFE Topic Submission]) --> B([PFE Coordinator])
+    B --> C{Decision <br/> Prof. 1 & 2}
+    C -- Validated --> D([Assignment Confirmed])
+    C -- Rejected --> R([Revision])
+    C -- Conditionally Accepted --> SR([Conditions to Clear])
+    SR --> L{Conditions <br/> cleared?}
+    L -- Yes --> D
+    L -- No --> SR
+    R --> A
+```
+
+At the end of the defence, the grading is recorded in a standardised **grading form**.
+Figures `\ref{fig-notation-licence-1}`{=latex} and
+`\ref{fig-notation-licence-2}`{=latex} present the front and back of the model
+used for PFE grading (for Licence and Master): the front collects project information
+(students, topic, supervisor, jury) and the grades awarded according to four criteria
+(writing, presentation, responses to questions, quality of results), while the back records
+the final decision (passed, deferred), the archiving arrangements, and any reservations
+expressed by the jury.
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,keepaspectratio,page=1]{images/Fiche de notation PFE Licence 2026_cropped.pdf}
+\caption{PFE Grading Form - Licence and Master (front)}
+\label{fig-notation-licence-1}
+\end{figure}
+```
+
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,keepaspectratio,page=2]{images/Fiche de notation PFE Licence 2026_cropped.pdf}
+\caption{PFE Grading Form - Licence and Master (back)}
+\label{fig-notation-licence-2}
+\end{figure}
+```
+
+![Global Status File @esst](/images/FicheGlobale-A.png){#fig-situation-globale fig-align="center" width="100%"}
+
+**Overall process overview**
+
+@fig-processus-esst synthesises the entire current PFE management process at the ESST,
+highlighting the interactions between the different actors.
+
+![Current PFE process at the ESST @esst](/images/etude-cas-esst-pfe-new3.png){#fig-processus-esst fig-align="center" width="81%" fig-pos="H"}
+
+### Tools used internally
+
+| Process step | Tool used | Observed limitations |
+|---|---|---|
+| Topic search by student | Direct contact (word of mouth) | Unstructured, unequal access |
+| Topic proposal by a company | Email / Phone | No traceability, no centralisation |
+| Topic validation | Email + paper | Slow, risk of information loss |
+| Supervisor-student assignment | Excel spreadsheet | No real-time updates |
+| Progress monitoring | Informal meetings | No traceability |
+| Thesis submission | Physical handover / Email | No structured digital archiving |
+| Defence scheduling | Notice board / Group email | Non-centralised communication |
+
+: Tools used in PFE management at the ESST and their limitations {tbl-colwidths="[30,30,40]"}
+
+<!-- Here are some examples of the figures (...esst fiches) -->
+
+
+## Learning Management Systems (LMS)
+
+All these findings highlight the structural limitations of management that relies on
+non-integrated tools and informal processes. To address these shortcomings, it is
+appropriate to examine the existing digital solutions that were designed precisely to
+centralise and automate the management of academic activities -- foremost among which are
+Learning Management Systems (LMS).
+
+*Learning Management Systems* (LMS) are software platforms designed to facilitate the
+creation, delivery, and tracking of educational content. Emerging in the 1990s, they
+quickly became established in global higher education as central tools for digital academic
+management.
+
+@ellis2009 defines an LMS as software enabling the management and distribution of online
+learning activities to multiple participants simultaneously, offering tracking, assessment,
+and communication functionalities. Although initially designed for e-learning, LMS have
+progressively been extended to other uses, including the management of academic projects.
+
+
+### Moodle
+
+Moodle (*Modular Object-Oriented Dynamic Learning Environment*) is the most widely used
+open-source LMS in the world. Initially developed by Martin Dougiamas in 2002 and
+published under the GNU GPL licence, it today counts more than 400 million users in over
+230 countries [@moodle2023 ; @moodle2023stats ; @moodle2022stats]. Its modular
+architecture allows extensive customisation through an ecosystem of community-developed
+plugins.
+
+In the Algerian university context, Moodle is used in several institutions as a support
+for teaching (course uploads, online assignments, forums). Some universities have attempted
+to adapt its assignment management modules for PFE tracking, with mixed results: the tool
+remains generalist and does not model the specific stages of the Algerian PFE process
+(topic proposal, validation, assignment).
+
+Key Moodle features relevant to PFE management:
+
+- User management (roles: student, lecturer, administrator).
+- File upload and exchange (theses, progress reports).
+- Internal messaging and discussion forum system.
+- Grade and feedback assignment.
+- Student activity tracking.
+
+### Other notable LMS
+
+Beyond Moodle, other LMS are used in global higher education, each with its own
+characteristics:
+
+- **Canvas (Instructure):** a proprietary LMS widely used in North America (approximately
+  41% of the North American market [@hill2024]), appreciated for its modern and intuitive
+  interface. It offers advanced collaboration features and integrates easily with
+  third-party tools. However, it offers no dedicated mechanism for PFE management and its
+  cost makes it largely inaccessible to Algerian institutions.
+- **Blackboard Learn:** one of the first commercial LMS, widely adopted by large
+  universities. It offers advanced analytical tools but its complexity and high cost make
+  it poorly suited to the context of mid-sized Algerian institutions.
+- **Google Classroom:** a lightweight, free solution from Google, particularly suited to
+  secondary education and small structures. Its integration with the Google ecosystem
+  (Drive, Docs, Meet) is its main asset. However, its features remain too limited to cover
+  a process as structured as the PFE.
+- **Microsoft Teams for Education:** a Microsoft solution integrating class management,
+  communication, and collaboration, increasingly adopted in higher education thanks to the
+  free licences offered to institutions. It offers no topic management, assignment, or
+  validation features, however, making it insufficient for complete PFE monitoring.
+
+### Other tools used in the academic context
+
+Beyond LMS, some Algerian university institutions use general-purpose office and
+collaboration suites to compensate for the absence of a dedicated platform. Among the most
+widely used:
+
+- **Google Workspace (Google Drive, Docs, Meet):** used informally for document sharing,
+  remote communication, and work monitoring. Its free accessibility and ease of use make
+  it a frequent recourse, although it offers no features specific to PFE management.
+- **Microsoft 365 (Word, Excel, Teams):** widely used in Algerian administrations, it is
+  often used for managing assignments (Excel), writing theses (Word), and communication
+  (Teams or Outlook email). As with Google Workspace, its use in this context constitutes
+  a workaround rather than an integration designed for the PFE process.
+
+These tools, although useful on a day-to-day basis, do not constitute solutions adapted to
+the structured management of a process as specific as the PFE. Their fragmented use
+contributes to the lack of centralisation and traceability already identified at the ESST.
+
+
+## Comparative study of existing solutions
+
+In order to objectively evaluate the solutions identified in the previous section, a
+comparative study was conducted by defining a set of functional and non-functional criteria
+directly related to PFE management needs.
+
+### Evaluation criteria
+
+The criteria selected for comparison derive directly from the needs identified
+during the study of the PFE process and the dysfunctions observed at the ESST. Each
+criterion corresponds to an essential requirement for managing the PFE lifecycle:
+
+- **User and role management**: actors with distinct responsibilities requiring fine-grained
+  access rights management.
+- **Topic proposal and assignment**: the founding step of the process, currently
+  unstructured (cf. section II.4).
+- **Progress monitoring**: the absence of traceability in pedagogical monitoring is a major
+  dysfunction identified at the ESST.
+- **Integrated communication**: coordination across disparate channels, a source of
+  information loss.
+- **Document management**: physical submission guarantees neither structured archiving nor
+  traceability.
+- **Adaptation to the Algerian context**: MESRS regulations and local defence practices
+  not covered by generalist solutions.
+- **Cost and accessibility**: limited budgets of mid-sized institutions.
+- **Ease of deployment**: frequent absence of dedicated IT teams.
+
+
+### Comparison table
+
+| Criterion                      |   Moodle  |   Canvas  | Blackboard | Identified requirements |
+| ------------------------------ | :-------: | :-------: | :--------: | :---------------------: |
+| Role management                |     v     |     v     |      v     |       Mandatory         |
+| Topic proposal                 | Partial   |     x     |      x     |       Mandatory         |
+| Supervisor-student assignment  | Manual    | Manual    |  Manual    |       Automated         |
+| Progress monitoring            | Partial   | Partial   |  Partial   |       Mandatory         |
+| Integrated communication       |     v     |     v     |      v     |       Desired           |
+| Document management            |     v     |     v     |      v     |       Mandatory         |
+| Adapted to Algerian context    |     x     |     x     |      x     |       Mandatory         |
+| Open-source / Free             |     v     |     x     |      x     |       Preferred         |
+| Simple deployment              | Medium    | Difficult |  Difficult |       Simple            |
+
+: Comparison of existing solutions and requirements identified for the proposed solution {tbl-colwidths="[25,15,15,15,15,15]"}
+
+### Analysis of results
+
+This comparative analysis shows that the generalist LMS available on the market (Moodle,
+Canvas, Blackboard) cover communication and document management needs adequately
+[@cavus2013], but prove insufficient when it comes to managing the PFE process in its
+entirety. In particular, none of these solutions offers an automated mechanism for the
+proposal, assignment, and validation of PFE topics.
+
+Furthermore, these solutions take no account whatsoever of the specificities of the
+Algerian university system, notably: the dual validation of topics by two lecturers from
+the same domain (with the possibility of conditional acceptance), assignment based on
+ranked preferences, the formation of juries according to MESRS rules, and grading out of
+20 distributed across five specific criteria (four for the jury, one for the supervisor).
+Their deployment in this context would require adaptations costly in time and human
+resources.
+
+
+## Synthesis of limitations and problem statement
+
+The comparative study of LMS and the field observation at the ESST converge on the same
+finding: despite the central role played by the PFE in the validation of university
+programmes [@loi9905], its management remains largely artisanal and unstructured today
+[@insaniyat2018 ; @berrouche2007].
+
+### Identified dysfunctions
+
+The three actors involved (student, supervisor, and administration) have at their disposal
+no unified platform to coordinate the different stages of the process. Exchanges rely
+primarily on standard office tools (Microsoft Word, Microsoft Excel), email communication,
+or direct telephone contact.
+
+This lack of automation generates several recurring dysfunctions [@berrouche2007]:
+
+- Risk of errors (manual data entry) that can affect data quality.
+- Informal archiving through Google Drive and Google Sheets, with unordered data.
+- Forms can be lost or damaged, causing delays in the validation process.
+- The administration may archive documents incorrectly, leading to information loss.
+- Difficulty for students in identifying available topics and potential supervisors, due
+  to the absence of a centralised and up-to-date list.
+- Lack of traceability of exchanges and validations between stakeholders.
+- Administrative overload on pedagogical coordinators and secretariats, linked to the
+  manual processing of numerous files.
+- Risks of errors, information loss, and missed deadlines in the absence of automated
+  monitoring.
+- The impossibility of obtaining reliable, real-time statistics on PFE progress at the
+  institutional level.
+
+These dysfunctions crystallise into four structural axes:
+
+- **Lack of centralisation:** information relating to topics, supervisors, and defences is
+  scattered across multiple media (spreadsheets, emails, notice boards), with no single
+  point of access for stakeholders.
+- **Absence of automation:** each step of the process requires manual human intervention,
+  generating a high administrative workload and risks of errors.
+- **Poor traceability:** the history of exchanges, validations, and decisions is not
+  systematically preserved in a searchable and structured form.
+- **Inequalities in access to information:** students who are less well connected to the
+  institution's informal network are disadvantaged in their search for a topic and a
+  supervisor.
+
+## Positioning and justification of the proposed solution
+
+The analysis conducted throughout this chapter (study of generalist LMS, comparative study,
+and case study at the ESST) converges on a clear finding: there is currently no dedicated
+software solution, adapted to the Algerian context, capable of managing the entire
+lifecycle of a Final Year Project in an integrated and automated manner.
+
+Existing LMS (Moodle, Canvas...) cover general pedagogical needs but do not model the PFE
+process in its specificity. Local solutions constitute partial attempts that do not cover
+all stages. And the reality on the ground at the ESST illustrates the real costs of this
+absence: information loss, organisational inefficiency, and inequalities between students.
+
+It is in this context that the contribution of this thesis is situated: the design and
+development of a web application dedicated to PFE management, targeting specifically
+Algerian university institutions and, as a priority, the ESST. This application proposes to:
+
+- Centralise on a single platform all information relating to PFE projects (topics,
+  assignments, schedules, defences).
+- Automate the key steps of the process (proposals, validations, notifications).
+- Offer each actor (student, lecturer, administration) an interface adapted to their needs
+  and role.
+- Ensure complete traceability of exchanges and decisions throughout the PFE lifecycle.
+
+> **Note:** The proposed solution is not an adapted generalist LMS, but a dedicated
+> business application, custom-built to meet the real and specific needs of PFE management
+> in the Algerian university context.
+
+The following chapters will describe in detail the design of this solution: requirements
+analysis, modelling, technical architecture, and implementation.
+
+## Conclusion
+
+This chapter provided a complete and progressive panorama of existing solutions in the
+field of digital academic management. Starting from a definition of the conceptual
+framework of the PFE and its actors, we surveyed and compared the LMS available on the
+market, before concretely observing their limitations through the ESST case study. The
+synthesis of these findings highlighted four major axes of dysfunction -- lack of
+centralisation, absence of automation, poor traceability, and inequalities in access --
+which constitute the fundamental justification for the project presented in this thesis.
+The functional and non-functional requirements that the proposed solution must meet derive
+directly from this analysis.

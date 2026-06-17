@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor #EEF5FF
+  BorderColor #3366CC
+  ArrowColor #3366CC
+}
+
+actor "Administration" as A
+
+rectangle "Système de Gestion des PFE" {
+  usecase "S'authentifier" as AUTH
+  usecase "Gérer les utilisateurs" as UC1
+  usecase "Valider les entreprises\npartenaires" as UC2
+  usecase "Assigner les validateurs\naux sujets" as UC3
+  usecase "Procéder aux\naffectations PFE" as UC4
+  usecase "Constituer les jurys\nde soutenance" as UC5
+  usecase "Planifier les\nsoutenances" as UC6
+  usecase "Gérer les paramètres\nacadémiques" as UC8
+  usecase "Consulter les statistiques\net exporter les rapports" as UC9
+}
+
+A --> UC1
+A --> UC2
+A --> UC3
+A --> UC4
+A --> UC5
+A --> UC6
+A --> UC8
+A --> UC9
+
+UC1 ..> AUTH : <<include>>
+UC2 ..> AUTH : <<include>>
+UC3 ..> AUTH : <<include>>
+UC4 ..> AUTH : <<include>>
+UC5 ..> AUTH : <<include>>
+UC6 ..> AUTH : <<include>>
+UC8 ..> AUTH : <<include>>
+UC9 ..> AUTH : <<include>>
+
+UC6 ..> UC5 : <<include>>
+UC4 ..> UC3 : <<include>>
+@enduml

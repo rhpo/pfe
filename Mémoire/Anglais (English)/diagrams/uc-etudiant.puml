@@ -1,0 +1,42 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor #EEF5FF
+  BorderColor #3366CC
+  ArrowColor #3366CC
+}
+
+actor "Student" as E
+
+rectangle "PFE Management System" {
+  usecase "Authenticate" as AUTH
+  usecase "Browse topic\ncatalogue" as UC1
+  usecase "Submit PFE\npreferences" as UC2
+  usecase "Consult PFE\nassignment" as UC3
+  usecase "Consult\nprogress reports" as UC4
+  usecase "Submit\nfinal thesis" as UC5
+  usecase "Consult defence\nschedule" as UC6
+  usecase "Consult\nresults and grades" as UC7
+}
+
+E --> UC1
+E --> UC2
+E --> UC3
+E --> UC4
+E --> UC5
+E --> UC6
+E --> UC7
+
+UC1 ..> AUTH : <<include>>
+UC2 ..> AUTH : <<include>>
+UC3 ..> AUTH : <<include>>
+UC4 ..> AUTH : <<include>>
+UC5 ..> AUTH : <<include>>
+UC6 ..> AUTH : <<include>>
+UC7 ..> AUTH : <<include>>
+
+UC2 ..> UC1 : <<include>>
+UC5 ..> UC3 : <<include>>
+@enduml

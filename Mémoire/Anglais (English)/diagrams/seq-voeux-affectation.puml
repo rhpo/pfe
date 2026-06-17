@@ -1,0 +1,41 @@
+@startuml
+scale 1.2
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantBackgroundColor #EEF5FF
+skinparam sequenceParticipantBorderColor #3366CC
+
+actor "Student" as E
+participant "System" as S
+database "DBMS" as DB
+
+E -> S : Browses the topic catalogue
+activate S
+S -> DB : SELECT * FROM pfe_subjects\nWHERE status = 'validated'\nAND academic_year_id = ?
+activate DB
+DB --> S : List of available topics
+deactivate DB
+S --> E : Displays topics\n(filtered by specialisation and domain)
+deactivate S
+
+E -> S : Submits ranked preferences\nin order of preference
+activate S
+S -> DB : SELECT COUNT(*) FROM wishes\nWHERE student_id = ?\nAND academic_year_id = ?
+activate DB
+DB --> S : Existing preference count
+deactivate DB
+S -> S : Checks preference\nlimit
+
+alt Limit not reached
+  S -> DB : INSERT INTO wishes\n(student_id, subject_id,\nstatus = 'pending')
+  activate DB
+  DB --> S : Confirmation
+  deactivate DB
+  S --> E : Preferences recorded
+  S -> DB : INSERT INTO notifications\n(recipient_id, type = 'new_wish')
+  activate DB
+  deactivate DB
+else Limit reached
+  S --> E : Error: maximum number\nof preferences reached
+end
+deactivate S
+@enduml

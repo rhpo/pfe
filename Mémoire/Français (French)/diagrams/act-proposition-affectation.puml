@@ -1,0 +1,52 @@
+@startuml
+skinparam activity {
+  BackgroundColor #EEF5FF
+  BorderColor #3366CC
+  ArrowColor #3366CC
+  DiamondBackgroundColor #FFF8E1
+  DiamondBorderColor #FF8C00
+  FontSize 12
+}
+
+|Enseignant / Entreprise|
+start
+:Proposer un sujet PFE;
+
+|Administration|
+:Assigner les validateurs;
+
+|Enseignant / Entreprise|
+:Évaluer le sujet\n(en tant que validateur);
+if (Décision ?) then (Validé)
+elseif (Accepté sous réserve)
+  :Notifier le proposant\n(réserves à lever);
+  :Lever les réserves\n(modifier le sujet);
+  :Réévaluation par\nles validateurs;
+  if (Réserves levées ?) then (Oui)
+  else (Non)
+    :Notifier le proposant\n(sujet refusé);
+    stop
+  endif
+else (Refusé)
+  :Notifier le proposant\n(sujet refusé);
+  stop
+endif
+
+|Administration|
+:Publier le sujet au catalogue;
+
+|Étudiant|
+:Consulter le catalogue;
+:Exprimer ses vœux\n(classés par préférence);
+
+|Enseignant / Entreprise|
+:Consulter les candidatures;
+:Accepter ou refuser\nles candidats;
+
+|Administration|
+:Procéder aux affectations PFE;
+:Générer le code PFE;
+:Affecter superviseur\net co-superviseur;
+:Notifier toutes les parties;
+stop
+@enduml

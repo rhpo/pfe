@@ -1,0 +1,59 @@
+@startuml
+scale 1.0
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantBackgroundColor #EEF5FF
+skinparam sequenceParticipantBorderColor #3366CC
+
+actor "Lecturer\n(Validator)" as V
+participant "System" as S
+database "DBMS" as DB
+actor "Student" as E
+
+V -> S : Consults the topic to evaluate
+activate S
+S -> DB : SELECT * FROM pfe_subjects\nWHERE id = ?
+activate DB
+DB --> S : Topic data
+deactivate DB
+S --> V : Displays topic details
+deactivate S
+
+V -> S : Submits decision\n(validated / conditionally accepted / rejected)\nwith comment
+activate S
+S -> DB : UPDATE pfe_subjects\nSET validator1_decision = ?,\nvalidator1_comment = ?\nWHERE id = ?
+activate DB
+DB --> S : Confirmation
+deactivate DB
+
+S -> DB : SELECT validator1_decision,\nvalidator2_decision\nFROM pfe_subjects WHERE id = ?
+activate DB
+DB --> S : Decisions
+deactivate DB
+
+alt Both validators validate
+  S -> DB : UPDATE pfe_subjects\nSET status = 'validated' WHERE id = ?
+  activate DB
+  deactivate DB
+  S -> DB : INSERT INTO notifications\n(proposer + student,\ntype = 'subject_validated')
+  activate DB
+  deactivate DB
+  S --> E : Notification: topic validated
+else At least one validator rejects
+  S -> DB : UPDATE pfe_subjects\nSET status = 'rejected' WHERE id = ?
+  activate DB
+  deactivate DB
+  S -> DB : INSERT INTO notifications\n(proposer + student,\ntype = 'subject_rejected')
+  activate DB
+  deactivate DB
+  S --> E : Notification: topic rejected
+else Conditionally accepted
+  S -> DB : UPDATE pfe_subjects\nSET status = 'conditionally_accepted'\nWHERE id = ?
+  activate DB
+  deactivate DB
+  S -> DB : INSERT INTO notifications\n(proposer + student,\ntype = 'subject_conditions')
+  activate DB
+  deactivate DB
+  S --> E : Notification: modifications required
+end
+deactivate S
+@enduml

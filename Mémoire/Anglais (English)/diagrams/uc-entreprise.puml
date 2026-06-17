@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor #EEF5FF
+  BorderColor #3366CC
+  ArrowColor #3366CC
+}
+
+actor "Company" as C
+
+rectangle "PFE Management System" {
+  usecase "Authenticate" as AUTH
+  usecase "Propose a PFE topic" as UC1
+  usecase "Consult\napplications" as UC2
+  usecase "Monitor assigned\nPFE projects" as UC3
+  usecase "Participate in\npedagogical supervision" as UC4
+  usecase "Submit a\ncorrection report" as UC6
+}
+
+C --> UC1
+C --> UC2
+C --> UC3
+C --> UC4
+C --> UC6
+
+UC1 ..> AUTH : <<include>>
+UC2 ..> AUTH : <<include>>
+UC3 ..> AUTH : <<include>>
+UC4 ..> AUTH : <<include>>
+UC6 ..> AUTH : <<include>>
+
+UC2 ..> UC1 : <<extend>>
+@enduml

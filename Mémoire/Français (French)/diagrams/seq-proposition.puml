@@ -1,0 +1,23 @@
+@startuml
+scale 1.2
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantBackgroundColor #EEF5FF
+skinparam sequenceParticipantBorderColor #3366CC
+
+actor "Enseignant" as P
+participant "Système" as S
+database "SGBD" as DB
+
+P -> S : Soumet un sujet PFE\n(titre, description, type, domaines)
+activate S
+S -> S : Valide les données du formulaire
+S -> DB : INSERT INTO pfe_subjects\n(title, description, group_type,\nproposer_id, status = 'en_attente')
+activate DB
+DB --> S : Confirmation
+deactivate DB
+S --> P : Sujet enregistré avec succès
+S -> DB : INSERT INTO notifications\n(recipient_id, type = 'new_subject')
+activate DB
+deactivate DB
+deactivate S
+@enduml

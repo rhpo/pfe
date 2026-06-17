@@ -1,0 +1,217 @@
+# Réalisation et Résultats
+
+## Introduction
+
+Ce chapitre présente la phase de réalisation du système conçu au chapitre précédent.
+Nous commencerons par justifier le choix d'une application web, puis nous détaillerons
+les langages de programmation, les outils et les frameworks retenus en motivant chaque
+décision. Enfin, nous illustrerons le résultat final à travers les captures d'écran des
+interfaces principales de l'application.
+
+
+## Justification du choix d'une application web
+
+Le choix de développer une application web, par opposition à une application de bureau
+ou mobile native, repose sur plusieurs critères directement liés au contexte d'utilisation
+du système :
+
+- **Accessibilité universelle** : une application web est accessible depuis n'importe quel
+  navigateur, sans installation préalable, ce qui facilite l'adoption par les quatre
+  catégories d'acteurs (étudiants, enseignants, administration, entreprises).
+- **Déploiement centralisé** : une seule instance du système est déployée sur un serveur,
+  ce qui simplifie la maintenance, les mises à jour et la gestion des données.
+- **Multi-plateforme** : l'application fonctionne indépendamment du système d'exploitation
+  (Windows, Linux, macOS) et du type de terminal (ordinateur, tablette, smartphone).
+- **Coût réduit** : le développement d'une seule base de code couvrant tous les terminaux
+  évite la duplication d'efforts inhérente au développement natif multi-plateforme.
+- **Collaboration en temps réel** : l'architecture client-serveur permet à plusieurs
+  utilisateurs d'accéder simultanément aux données actualisées du système.
+
+Ces avantages font de l'application web le choix le plus adapté pour un système de gestion
+des PFE destiné à un établissement universitaire.
+
+## Langages et outils
+
+L'implémentation du système repose sur un ensemble de langages et d'outils sélectionnés
+pour leur complémentarité et leur adéquation au profil de l'application.
+
+### Langages de programmation
+
+- **HTML5** [@mdn2024] : langage de balisage standard pour la structuration du contenu des
+  pages web. Il constitue le squelette de toutes les vues de l'application.
+- **CSS3** [@mdn2024css] : langage de feuilles de style utilisé pour la mise en forme, le
+  positionnement et le design responsive de l'interface utilisateur.
+- **JavaScript (ES2022)** [@ecma2022] : langage de programmation côté client permettant
+  l'interactivité des pages, la manipulation du DOM et la communication asynchrone avec
+  le serveur. JavaScript est le seul langage nativement exécuté par les navigateurs web,
+  ce qui en fait un choix incontournable pour le frontend.
+- **TypeScript** [@typescript2024] : sur-ensemble typé de JavaScript, utilisé côté serveur
+  (Node.js) et côté client pour garantir la fiabilité du code grâce au typage statique et
+  à la détection d'erreurs à la compilation. Le choix de TypeScript plutôt que JavaScript
+  pur se justifie par la réduction significative des erreurs à l'exécution dans un projet
+  de cette envergure.
+- **Go (Golang)** [@pike2012] : langage compilé conçu par Google, utilisé pour le
+  développement de l'API REST backend. Go a été retenu pour son empreinte mémoire faible,
+  sa gestion native de la concurrence (goroutines) et la production d'un binaire autonome
+  déployable sans dépendances externes, ce qui simplifie considérablement le déploiement
+  en contexte universitaire.
+
+### Outils de développement
+
+- **Neovim** [@neovim2024] : éditeur de code principal, hautement configurable et
+  extensible, utilisé avec des plugins dédiés pour Svelte, TypeScript et Go.
+- **Git / GitHub** : système de contrôle de version distribué et plateforme d'hébergement
+  du code source, permettant le suivi des modifications et la collaboration.
+- **SQLite** [@sqlite2024] : système de gestion de base de données relationnelle embarquée,
+  ne nécessitant aucun serveur dédié. Le choix de SQLite plutôt qu'un SGBD client-serveur
+  (PostgreSQL, MySQL) se justifie par la simplicité de déploiement et la faible charge
+  attendue dans un contexte universitaire, tout en offrant la conformité ACID et le support
+  complet du SQL.
+- **PlantUML** : outil de génération de diagrammes UML à partir de descriptions textuelles,
+  utilisé pour la modélisation présentée au chapitre précédent.
+- **Quarto (LaTeX)** : système de publication scientifique utilisé pour la rédaction du
+  présent mémoire.
+
+## Frameworks
+
+### SvelteKit (Frontend)
+
+SvelteKit [@sveltekit2024] est un framework full-stack basé sur Svelte [@harris2018],
+utilisant Node.js et TypeScript côté serveur. Le choix de SvelteKit plutôt que les
+frameworks JavaScript dominants (React/Next.js, Vue.js/Nuxt, Angular) se justifie par
+son architecture basée sur la compilation : le code est converti en JavaScript optimisé
+au moment du build, sans runtime virtuel côté client. Cela se traduit par un temps de
+chargement initial nettement inférieur et une meilleure performance perceptible pour
+l'utilisateur.
+
+Sa gestion native du rendu côté serveur (SSR) et du routage basé sur le système de fichiers
+simplifie considérablement le développement. L'interface utilisateur de l'application
+offre des vues différenciées selon le rôle de l'utilisateur authentifié (étudiant,
+enseignant, administrateur, entreprise).
+
+### Fiber (Backend)
+
+Fiber [@fiber2024] est un framework web pour Go inspiré d'Express.js, conçu pour les
+applications à haute performance. Il repose sur le moteur HTTP Fasthttp, qui offre des
+performances nettement supérieures au package net/http standard de Go. Le choix de Fiber
+se justifie par sa simplicité d'utilisation, sa documentation complète et son écosystème
+de middlewares (authentification, CORS, logging).
+
+L'API REST développée avec Fiber expose des endpoints sécurisés et gère la logique métier
+ainsi que la persistance des données. L'architecture du backend suit le pattern
+**Repository-Service-Handler** :
+
+- **Repository** : couche d'accès aux données (requêtes SQL vers SQLite).
+- **Service** : couche de logique métier (validation, calculs, orchestration).
+- **Handler** : couche de présentation (endpoints HTTP, sérialisation JSON).
+
+Cette séparation stricte des responsabilités garantit la maintenabilité, la testabilité et
+l'évolutivité de la solution.
+
+## Présentation des interfaces
+
+Cette section présente les captures d'écran des pages principales de l'application,
+illustrant le résultat final de la phase de réalisation.
+
+### Interfaces de l'Administration
+
+L'administrateur dispose d'une vue d'ensemble sur le système. Comme l'illustre la @fig-admin-dashboard, le tableau de bord lui permet de suivre l'état global des processus du PFE de manière claire et visuelle.
+
+La première partie de cette interface présente des cartes récapitulatives affichant le nombre total d'étudiants (avec le nombre d'affectés), le nombre de sujets soumis (avec ceux en attente ou validés), ainsi que les enseignants disponibles. Cela offre une vision immédiate sur les indicateurs de performance clés.
+Ensuite, des graphiques interactifs détaillent la progression du cycle PFE, illustrent l'évolution des étudiants au cours de l'année académique sous forme de courbe, et décomposent l'état global des sujets (validés, en attente, refusés) grâce à un diagramme circulaire intuitif pour faciliter la prise de décision.
+
+![Tableau de bord de l'administration, offrant une vue d'ensemble sur l'activité, les statistiques et l'état d'avancement des PFE.](images/screenshots/admin-dashboard.png){#fig-admin-dashboard width="80%"}
+
+La gestion des sujets permet à l'administration de valider, d'assigner et de filtrer les différents sujets proposés par les enseignants et les entreprises. La @fig-admin-sujets montre en détail cette interface de supervision.
+
+Cette page s'articule autour d'un tableau filtrable ("Tous", "En attente", "Validés", "Refusés") listant l'ensemble des propositions de PFE. Pour chaque sujet, on retrouve son titre, la composition du groupe exigée (monôme, binôme, trinôme), l'initiateur du sujet avec son rôle précis (enseignant ou entreprise), et sa date de soumission.
+De plus, la colonne des statuts affiche des badges colorés permettant une identification rapide de l'état du sujet. La colonne d'actions offre à l'administrateur des contrôles directs : il peut par exemple assigner des validateurs pour les sujets en attente d'évaluation ou débloquer des sujets refusés.
+
+![Interface de gestion des sujets, permettant le suivi, le filtrage et la validation des propositions de PFE.](images/screenshots/admin-sujets.png){#fig-admin-sujets width="80%"}
+
+Une fois les affectations terminées, l'administrateur planifie et gère les soutenances. Cette interface, présentée par la @fig-admin-soutenances, centralise les événements à venir.
+
+Elle fournit un tableau structuré listant toutes les soutenances programmées ou en attente de planification. On y trouve la date et l'heure prévues, la salle affectée (par exemple, "Salle A101"), ainsi que le statut actuel de l'événement (comme "Planifiée"). Des colonnes sont également prévues pour la note finale et le résultat une fois la soutenance passée.
+L'administrateur dispose en haut de page d'outils de filtrage par date et par statut, ainsi que d'un bouton de création "Planifier une soutenance". Chaque ligne du tableau intègre un bouton "Voir" permettant d'accéder aux détails spécifiques du rendez-vous, du jury et du groupe évalué.
+
+![Interface de planification et gestion des soutenances.](images/screenshots/admin-soutenances.png){#fig-admin-soutenances width="80%"}
+
+### Interfaces des Enseignants
+
+Le tableau de bord enseignant offre un accès rapide à ses encadrements, aux sujets qu'il propose ainsi qu'aux jurys auxquels il est affecté. La @fig-teacher-dashboard illustre cette page d'accueil personnalisée.
+
+Le haut de l'interface met en évidence quatre indicateurs essentiels : le nombre d'étudiants qu'il encadre, les sujets en attente de validation, les sujets qu'il a déjà proposés, et son statut de disponibilité ("Disponible" par défaut). Des accès rapides ("Raccourcis") sous forme de boutons bien mis en évidence lui permettent de naviguer directement vers "Mes sujets", "Sujets à valider", ou de "Modifier sa disponibilité".
+Au centre de l'écran, deux encarts informent l'enseignant des événements cruciaux : "Prochaines soutenances", qui liste ses convocations en tant que membre de jury (avec date, heure et lieu), et "Notifications", pour les messages ou alertes non lues et récentes.
+
+![Tableau de bord de l'enseignant résumant ses responsabilités, encadrements, jurys, et propositions en un coup d'œil.](images/screenshots/teacher-dashboard.png){#fig-teacher-dashboard width="80%"}
+
+La page des sujets permet à l'enseignant de soumettre de nouveaux sujets via un formulaire dédié et de consulter l'état de validation de ses propositions, comme le présente la @fig-teacher-sujets.
+
+Cette vue liste sous forme de tableau l'historique complet des sujets créés par l'enseignant. Chaque ligne affiche le titre de la proposition (par exemple "Chatbot IA pour la scolarité"), l'effectif du groupe demandé (Binôme), le statut actuel signalé par un badge visuel (ex. "EN ATTENTE"), et la date de proposition.
+Un bouton d'action principal "Proposer un nouveau sujet" est mis en évidence en haut à droite pour permettre de nouvelles soumissions facilement. Cela centralise et simplifie le parcours de dépôt de PFE pour les équipes pédagogiques.
+
+![Interface de gestion des sujets proposés par l'enseignant.](images/screenshots/teacher-sujets.png){#fig-teacher-sujets width="80%"}
+
+### Interfaces des Étudiants
+
+Dès sa connexion, l'étudiant accède à un tableau de bord récapitulatif lui indiquant les dates importantes et le statut de son PFE de manière claire et concise. La @fig-student-dashboard donne un aperçu de cette interface.
+
+L'agencement se concentre sur l'essentiel : des indicateurs statistiques lui montrent le statut de son PFE (actuellement "EN COURS"), le nombre de vœux qu'il a déjà soumis pour ses choix de sujet, et ses notifications non lues. Tous ces éléments sont accessibles en un seul coup d'œil.
+L'étudiant dispose également de rubriques dédiées à ses dernières notifications et de raccourcis rapides pour consulter le catalogue global des sujets, gérer ses vœux, ou accéder à l'espace de suivi détaillé de son PFE. Ces commandes facilitent une navigation fluide sans se perdre dans les menus secondaires.
+
+![Tableau de bord de l'étudiant, affichant l'état de la recherche, les vœux soumis et les raccourcis vers les actions principales.](images/screenshots/student-dashboard.png){#fig-student-dashboard width="80%"}
+
+Pour formuler ses choix, l'étudiant a accès au catalogue complet et peut exprimer ses vœux selon ses préférences. La @fig-student-voeux montre l'interface de gestion de ces choix.
+
+Sur cet écran, l'étudiant peut visualiser et gérer la liste ordonnée des sujets qui l'intéressent. Le système indique clairement la limite autorisée (par exemple "1 vœu sur 5 maximum"), offrant une contrainte visuelle qui aide à limiter les erreurs.
+Les vœux formulés s'affichent sous forme de cartes d'information détaillant le titre du sujet, son identifiant, son statut, et sa date de création/ajout. Pour chaque choix, l'étudiant a la possibilité de le "Retirer" d'un simple clic s'il change d'avis avant la clôture de la période d'affectation.
+
+![Page de gestion et d'expression des vœux par l'étudiant.](images/screenshots/student-voeux.png){#fig-student-voeux width="80%"}
+
+L'espace PFE de l'étudiant lui permet de suivre l'avancement de son projet. Il peut consulter les remarques de son encadrant et interagir chronologiquement, comme illustré par la @fig-student-pfe.
+
+Cette vue centralise l'information autour du projet validé : on y trouve l'état du "Sujet" avec l'encadreur assigné (ou non assigné) et un éventuel co-promoteur (par exemple, une "Entreprise").
+Juste en dessous, le "Journal de suivi" répertorie les échanges et l'historique des réunions. L'étudiant peut y ajouter de nouvelles intéractions en renseignant la "Date de la réunion" et en rédigeant des "Notes" descriptives sur l'avancement de ses travaux. Ce carnet de bord numérique est essentiel pour tracer l'évolution des tâches et l'implication des parties prenantes.
+
+![Espace "Mon PFE" permettant à l'étudiant de suivre l'avancement de son projet et de tenir un journal de bord.](images/screenshots/student-pfe.png){#fig-student-pfe width="80%"}
+
+### Interfaces des Entreprises
+
+Les partenaires industriels accèdent à la plateforme via un processus d'inscription
+dédié : l'entreprise crée un compte en renseignant ses coordonnées (nom, secteur
+d'activité, contact référent), puis ce compte est soumis à une vérification
+administrative avant activation. Une fois validée par l'administration, l'entreprise
+peut se connecter et accéder à son espace personnalisé. Les partenaires bénéficient
+d'une interface sur mesure qui s'adapte à leurs besoins, utilisant notamment un mode
+sombre esthétique et reposant (dark mode). La @fig-company-dashboard affiche ce
+tableau de bord.
+
+Pour les autres profiles, a vue présente des indicateurs de l'activité de l'entreprise : "Sujets proposés", "Étudiants encadrés" et "Notifications non lues". Permettant d'avoir un bilan immédiat de son implication au sein du programme PFE de l'établissement.
+Des blocs spécifiques affichent un aperçu des encadrements en cours (actuellement vides s'il n'y en a pas encore) et l'état des derniers sujets soumis pour validation. Un raccourci "Proposer un sujet" est facilement accessible, favorisant et fluidifiant les propositions de problématiques industrielles.
+
+![Tableau de bord en mode sombre de l'entreprise partenaire récapitulant les propositions et encadrements.](images/screenshots/company-dashboard.png){#fig-company-dashboard width="80%"}
+
+La gestion des sujets permet à l'entreprise de consulter l'historique de ses propositions et de vérifier leur état de validation par le comité scientifique. La @fig-company-sujets montre cette liste de sujets.
+
+Ce tableau synthétise toutes les soumissions de l'entreprise. On y retrouve des détails pertinents comme le titre ("Migration cloud de l'infrastructure"), les domaines, le type de groupe requis, et son statut (par exemple "EN ATTENTE").
+Cette vue met l'accent sur la lisibilité des états pour éviter à l'entreprise de devoir solliciter sans cesse l'administration : elle sait directement si son idée est acceptée, en relecture, ou validée.
+
+![Interface de gestion des sujets soumis par l'entreprise partenaire.](images/screenshots/company-sujets.png){#fig-company-sujets width="80%"}
+
+L'entreprise peut également formuler et soumettre de nouvelles propositions de projets via un formulaire structuré facilitant l'évaluation par l'établissement. Ce formulaire est visible en @fig-company-proposal.
+
+Ce dernier regroupe l'ensemble des champs obligatoires marqués d'un astérisque : un champ texte pour le "Titre du sujet", une zone de "Description" détaillée pour lister les objectifs et technologies attendues, ainsi que des menus déroulants pour préciser le "Niveau", la "Spécialité" et le "Type de groupe" (ex: Monôme 1 étudiant).
+Une annotation informative rappelle subtilement que le sujet ne sera visible dans le catalogue qu'après la validation d'enseignants spécialisés, renforçant la transparence du processus. Une fois les données saisies, le bouton d'action principal permet de finaliser la proposition.
+
+![Formulaire de proposition d'un nouveau sujet de PFE par l'entreprise, comprenant tous les champs descriptifs requis.](images/screenshots/company-proposal.png){#fig-company-proposal width="100%"}
+
+## Conclusion
+
+Ce chapitre a présenté la réalisation concrète du système conçu au chapitre précédent.
+Le choix d'une application web se justifie par l'accessibilité universelle, le déploiement
+centralisé et la compatibilité multi-plateforme. L'architecture client-serveur associant
+SvelteKit (frontend) et Go/Fiber (backend) a permis de développer une application
+performante, maintenable et adaptée au contexte universitaire algérien. Les interfaces
+développées couvrent l'ensemble des fonctionnalités identifiées : authentification,
+gestion des sujets, expression de vœux, affectation, suivi pédagogique, planification
+des soutenances et notation.

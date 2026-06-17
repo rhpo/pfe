@@ -1,0 +1,39 @@
+@startuml
+scale 1.2
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantBackgroundColor #EEF5FF
+skinparam sequenceParticipantBorderColor #3366CC
+
+actor "Administration" as A
+participant "System" as S
+database "DBMS" as DB
+
+A -> S : Forms the jury\n(president + member)
+activate S
+S -> DB : SELECT * FROM users\nWHERE role = 'teacher'\nAND available = true
+activate DB
+DB --> S : List of available lecturers
+deactivate DB
+S --> A : Displays available lecturers
+A -> S : Selects jury members
+S -> DB : INSERT INTO defense_juries\n(assignment_id, president_id,\nmember_id)
+activate DB
+DB --> S : Confirmation
+deactivate DB
+S -> DB : INSERT INTO notifications\n(recipient_id,\ntype = 'jury_invitation')
+activate DB
+deactivate DB
+deactivate S
+
+A -> S : Schedules the defence\n(date, time, room)
+activate S
+S -> DB : INSERT INTO defenses\n(jury_id, scheduled_at,\nroom, status = 'scheduled')
+activate DB
+DB --> S : Confirmation
+deactivate DB
+S -> DB : INSERT INTO notifications\n(recipient_id,\ntype = 'defense_scheduled')
+activate DB
+deactivate DB
+S --> A : Defence scheduled
+deactivate S
+@enduml

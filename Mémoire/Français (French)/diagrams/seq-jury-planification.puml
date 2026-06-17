@@ -1,0 +1,39 @@
+@startuml
+scale 1.2
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantBackgroundColor #EEF5FF
+skinparam sequenceParticipantBorderColor #3366CC
+
+actor "Administration" as A
+participant "Système" as S
+database "SGBD" as DB
+
+A -> S : Constitue le jury\n(président + membre)
+activate S
+S -> DB : SELECT * FROM users\nWHERE role = 'teacher'\nAND available = true
+activate DB
+DB --> S : Liste des enseignants disponibles
+deactivate DB
+S --> A : Affiche les enseignants disponibles
+A -> S : Sélectionne les membres du jury
+S -> DB : INSERT INTO defense_juries\n(assignment_id, president_id,\nmember_id)
+activate DB
+DB --> S : Confirmation
+deactivate DB
+S -> DB : INSERT INTO notifications\n(recipient_id,\ntype = 'jury_invitation')
+activate DB
+deactivate DB
+deactivate S
+
+A -> S : Planifie la soutenance\n(date, heure, salle)
+activate S
+S -> DB : INSERT INTO defenses\n(jury_id, scheduled_at,\nroom, status = 'scheduled')
+activate DB
+DB --> S : Confirmation
+deactivate DB
+S -> DB : INSERT INTO notifications\n(recipient_id,\ntype = 'defense_scheduled')
+activate DB
+deactivate DB
+S --> A : Soutenance planifiée
+deactivate S
+@enduml

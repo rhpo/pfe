@@ -1,0 +1,64 @@
+@startuml
+skinparam activity {
+  BackgroundColor #EEF5FF
+  BorderColor #3366CC
+  ArrowColor #3366CC
+  DiamondBackgroundColor #FFF8E1
+  DiamondBorderColor #FF8C00
+  FontSize 12
+}
+
+|Étudiant|
+start
+:Réaliser les travaux du PFE;
+
+fork
+  |Étudiant|
+  :Participer aux\nréunions de suivi;
+|Enseignant / Entreprise|
+  :Renseigner les\nfiches de suivi;
+fork end
+
+|Étudiant|
+:Soumettre le mémoire final;
+
+|Administration|
+:Constituer le jury\n(président + membre);
+:Planifier la soutenance\n(date, salle);
+:Notifier toutes les parties;
+
+|Étudiant|
+:Présenter la soutenance;
+
+|Enseignant / Entreprise|
+:Soumettre les notes du jury\n(critères 1 à 4);
+:Soumettre l'évaluation\nde l'encadrant (critère 5);
+
+note right
+  **Délibération du jury**
+  Le jury calcule la note
+  finale et détermine
+  le résultat
+end note
+
+:Calculer la note finale (/20)\net déterminer le résultat;
+
+if (Résultat ?) then (Admis)
+  |Administration|
+  :Archiver et publier le PFE;
+  stop
+else (Non admis\nou corrections)
+  if (Corrections requises ?) then (Oui)
+    |Enseignant / Entreprise|
+    :Signaler les réserves\net corrections à apporter;
+    |Étudiant|
+    :Apporter les corrections;
+    :Re-soumettre le mémoire;
+    |Administration|
+    :Re-planifier la soutenance;
+    stop
+  else (Non)
+    stop
+  endif
+endif
+@enduml

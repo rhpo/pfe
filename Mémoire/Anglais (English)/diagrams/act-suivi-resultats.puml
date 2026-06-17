@@ -1,0 +1,64 @@
+@startuml
+skinparam activity {
+  BackgroundColor #EEF5FF
+  BorderColor #3366CC
+  ArrowColor #3366CC
+  DiamondBackgroundColor #FFF8E1
+  DiamondBorderColor #FF8C00
+  FontSize 12
+}
+
+|Student|
+start
+:Carry out PFE project work;
+
+fork
+  |Student|
+  :Attend\nprogress meetings;
+|Lecturer / Company|
+  :Fill in\nprogress reports;
+fork end
+
+|Student|
+:Submit final thesis;
+
+|Administration|
+:Form the jury\n(president + member);
+:Schedule the defence\n(date, room);
+:Notify all parties;
+
+|Student|
+:Present the defence;
+
+|Lecturer / Company|
+:Submit jury grades\n(criteria 1 to 4);
+:Submit supervisor\nevaluation (criterion 5);
+
+note right
+  **Jury deliberation**
+  The jury calculates the
+  final grade and determines
+  the result
+end note
+
+:Calculate final grade (/20)\nand determine result;
+
+if (Result?) then (Passed)
+  |Administration|
+  :Archive and publish the PFE;
+  stop
+else (Failed\nor corrections)
+  if (Corrections required?) then (Yes)
+    |Lecturer / Company|
+    :State conditions\nand corrections to make;
+    |Student|
+    :Apply corrections;
+    :Re-submit thesis;
+    |Administration|
+    :Re-schedule defence;
+    stop
+  else (No)
+    stop
+  endif
+endif
+@enduml

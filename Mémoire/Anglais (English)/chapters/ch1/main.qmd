@@ -1,0 +1,226 @@
+# Overview of Education
+
+
+## Introduction
+
+This chapter aims to establish the conceptual and contextual framework in which the
+present work is situated, adopting a progressive approach from the general to the
+particular.
+
+We begin from the fundamental act of learning, the bedrock of all pedagogical
+reflection, before examining how societies have structured this learning within formal
+educational systems, drawing on the case of the Algerian system.
+
+This progression will naturally lead us to the Final Year Project (PFE), the quintessential
+synthesis exercise through which students mobilise all the competencies acquired during
+their studies.
+
+Finally, a critical analysis of the current management of PFE projects in Algerian
+university institutions will illuminate the existing organisational shortcomings, thereby
+constituting the starting point of the problem that motivates the present work.
+
+## Learning
+
+Learning constitutes one of the most fundamental activities of human beings. Since
+prehistoric times, *Homo sapiens* has developed the capacity to accumulate, transmit, and
+transform knowledge, enabling adaptation to varied environments and the construction of
+complex civilisations. Unlike other species whose behaviour is essentially governed by
+instinct, human beings depend largely on learning to acquire the skills necessary for their
+survival and flourishing.
+
+From the perspective of cognitive science, learning is defined as a process by which an
+individual acquires new knowledge, skills, behaviours, or values through experience, study,
+instruction, or practice [@anderson1982]. This process rests on complex neurological
+mechanisms, notably synaptic plasticity and long-term memory, which allow the brain to
+reconfigure itself in response to lived experiences [@anderson2000].
+
+### Historical overview of education
+
+The history of education in the West traces its roots to ancient Greece, with the
+emergence of the first philosophical schools. Among the most celebrated, **Plato's Academy**
+(founded around 387 BC) and **Aristotle's Lyceum** (founded in 335 BC, also known as the
+Peripatetic school) laid the foundations of logical reasoning and systematic observation
+[@lebrun2003]. At the Lyceum (@fig-aristote), Aristotle favoured an empirical and
+encyclopaedic approach to knowledge, often teaching while walking through the gardens with
+his disciples. @lynch1972
+
+\vspace{1cm}
+
+![Representation of Aristotle's school @lynch1972](/images/Schule_des_Aristoteles.jpg){#fig-aristote fig-align="center" width="50%"}
+
+During the Middle Ages, teaching was structured around the seven liberal arts, before the
+first universities emerged in the twelfth century, organised into faculties (Theology, Law,
+Medicine, Arts) [@lebrun2003]. The modern era saw the emergence of Jesuit colleges and
+royal teaching institutions such as the College de France. This period was marked by the
+publication of influential pedagogical works such as that of Reixac in 1749 (@fig-reixac).
+
+![Pedagogical work: *Instruccions per a l'ensenyança de minyons* (1749) @reixac1749](/images/Reixac.jpg){#fig-reixac fig-align="center" width="35%"}
+
+**Finally**, the contemporary era marked the generalisation of compulsory and free
+schooling in the nineteenth century, transforming education into a fundamental right and
+a universal public service [@lebrun2003].
+
+
+### Why do we learn?
+
+The question of *why* we learn is both philosophical and pragmatic. Several fundamental
+motivations explain the natural human drive to learn [@anderson2000]:
+
+- **To succeed and flourish:** learning is the engine of personal and professional
+  achievement. It enables individuals to reach their goals, overcome obstacles, and find
+  their place in society.
+- **To gain social recognition and qualifications:** in modern societies, certifications
+  and diplomas constitute tangible proof of the knowledge and skills acquired. They
+  condition access to employment, positions of responsibility, and social advancement.
+- **To develop skills and adapt to the labour market:** in a world of perpetual
+  technological and economic change, continuous training has become a necessity. Yesterday's
+  skills can become obsolete within a few years, highlighting the importance of lifelong
+  learning.
+- **To contribute to collective progress:** beyond individual interest, learning nourishes
+  scientific, technological, and cultural innovation. Each generation transmits and enriches
+  the body of knowledge for the next.
+
+These motivations justify the organisation, by societies, of formal educational systems
+designed to structure and optimise the learning process from the earliest age.
+
+
+## Education structure and training pathways
+
+Formal education is the institutional mechanism by which societies organise the transfer
+of knowledge and skills between generations. It is structured in successive stages, each
+with its own pedagogical objectives, progressively guiding individuals from the acquisition
+of foundational knowledge through to advanced professional specialisation.
+
+In Algeria, as in the majority of countries, the educational system is organised in
+several cycles defined by the Ministry of National Education and the Ministry of Higher
+Education and Scientific Research (MESRS) [@loi9905]. This pathway, illustrated by
+@fig-parcours-algerie, is divided into four major stages: primary education, middle
+school, secondary education, and higher education. Each stage marks the student's success
+with a diploma or national examination that conditions access to the next cycle.
+
+![Educational pathway of a student (in Algeria) @france-edu-intl](/images/education.png){
+    #fig-parcours-algerie
+    fig-align="center"
+    width="85%"
+    fig-pos="H"
+}
+
+### Primary education
+
+Primary education constitutes the first stage of compulsory schooling. In Algeria, it
+spans five years (from approximately age 6 to 11) and covers the fundamentals: reading,
+writing, arithmetic, natural sciences, and civic education [@loi9905]. The main objective
+is to equip the child with the cognitive and social tools necessary for continuing
+education. At the end of this cycle, pupils sit the **Primary School Leaving Examination**
+and obtain the **Primary Studies Certificate** (CEP).
+
+### Middle school education
+
+The middle school cycle lasts four years in Algeria, covering grades 1AM through 4AM
+[@loi9905]. It deepens and broadens the knowledge acquired in primary school, introducing
+additional subjects such as advanced mathematics, physical sciences, history-geography,
+and foreign languages. This cycle concludes with the **Middle Education Certificate (BEM)**,
+a national examination that conditions access to high school.
+
+### Secondary education
+
+High school spans three years, covering grades 1AS through 3AS, and represents a pivotal
+stage in the student's academic orientation [@loi9905]. Students specialise in streams
+(sciences, humanities, mathematics, technology, management...) according to their
+aptitudes and professional projects. This cycle ends with the **Baccalaureate**, a
+national diploma granting access to higher education, often considered the student's first
+official qualification.
+
+### Higher education
+
+Higher education represents the summit of formal academic training. In Algeria, it is
+provided in universities, higher schools, institutes, and university centres spread
+throughout the national territory [@loi9905]. Two major training systems coexist.
+
+#### a) The LMD system (Licence - Master - Doctorate)
+
+> The LMD system was implemented in Algeria under Executive Decree No. 04-371 of
+> 21 November 2004. It aims, through an innovative framework, to integrate the University
+> into economic development and to harmonise the higher education system with the rest of
+> the world. [@univalger]
+
+Introduced in Algeria from 2004-2005 as part of a reform aimed at harmonising the
+Algerian university system with European standards (the Bologna Process) [@decret2004 ;
+@berrouche2007], the LMD system is organised in three grades, as illustrated in @fig-lmd.
+In this framework, a **credit** is the unit that measures the student's workload (lectures,
+supervised tutorials, practical work, and personal study), equivalent to approximately
+**20 to 25 hours of work per semester** [@mesrs2023 ; @mesrs2005guide]. Each semester
+corresponds to 30 credits, and credits are **accumulative**: once validated, they are
+permanently acquired, even in the event of repeating a year [@mesrs2005guide].
+
+- **Licence (L):** the first university grade, obtained after three years (six semesters)
+  following the Baccalaureate. The Licence validates **180 credits** and allows either
+  direct entry into the workforce or continued study at Master's level [@mesrs2005guide].
+- **Master (M):** the second grade, obtained after two additional years (four semesters)
+  following the Licence. The Master validates **120 additional credits** and deepens
+  specialisation. Two types exist: the academic Master (research-oriented) and the
+  professional Master (workforce-oriented) [@mesrs2005guide].
+- **Doctorate (D):** the third grade, accessible by competitive examination after obtaining
+  the Master. It is awarded upon completion of an original research work of a minimum
+  duration of three years and constitutes the highest academic grade [@decret2004].
+
+![Structure of the LMD system in Algeria - semester progression and accumulative credits @mesrs2023](/images/lmd-timeline.png){#fig-lmd fig-align="center" width="80%"}
+
+#### b) The engineering programme
+
+Alongside the LMD system, several Algerian institutions offer a five-year engineering
+programme following the Baccalaureate, awarding a **State Engineer's Diploma**
+[@mesrs2004]. This programme is offered not only by the National Higher Schools (ENS)
+and Polytechnic Schools, but also by certain universities such as USTHB (Houari Boumediene
+University of Science and Technology) or the University of Blida. This curriculum is more
+integrated and less modular than the LMD, with a national programme defined by the MESRS.
+The training alternates between theoretical instruction, practical work, and industrial
+internships, and concludes compulsorily with a Final Year Project [@insaniyat2018].
+
+| Criterion | LMD System | Engineering Programme |
+|---|---|---|
+| Total duration | 3 years (Licence) + 2 years (Master) | 5 years |
+| Degree awarded | Licence / Master | State Engineer's Diploma |
+| Modularity | High (semesters, accumulative credits) | Low (integrated national programme) |
+| Final validation | PFE module (Licence) / PFE semester (Master) | PFE (final semester) |
+| Track | Academic or professional | Technical/professional |
+| Entry requirements | Baccalaureate (all streams) | Baccalaureate (science streams) |
+
+: Comparison between the LMD system and the engineering programme in Algeria [@decret2004 ; @mesrs2004] {tbl-colwidths="[30,35,35]"}
+
+
+## Final Year Project (PFE)
+
+At this stage of the academic journey, a natural question arises: how does a student
+validate their cycle of studies? The answer lies in one key event: the Final Year Project,
+or PFE.
+
+In general, university curricula, whether at Licence or Master level, conclude with a
+final year project. The PFE is an academic exercise that carries a final grade and marks
+the end of a higher education cycle [@mesrs2004]. It is compulsory in *the majority* of
+Licence programmes and in *all* Master programmes.
+
+It represents for the student the opportunity to mobilise all the knowledge and
+competencies acquired throughout their training in order to address a concrete problem,
+whether scientific, technological, or organisational in nature, by producing a written
+document (the **Thesis**) and generally an **applied component** of the solution, then
+defending it before a jury.
+
+The PFE is recognised internationally under various names: *Senior Thesis* (United States),
+*Final Year Project* (United Kingdom), *Bachelor's Thesis* or *Master's Thesis*
+(Switzerland and French-speaking countries). In Algeria, its place in the curriculum
+varies according to the type of programme [@mesrs2004].
+
+<!-- Here was the PFE section that I moved to chapter 2 -->
+
+## Conclusion
+
+This first chapter laid the theoretical and contextual foundations of our study. Starting
+from the cognitive definition of learning [@anderson1982], we traced the historical
+evolution of educational systems [@lebrun2003] before anchoring our analysis in the
+Algerian context, governed by the 1999 framework law [@loi9905] and the 2004 LMD reform
+[@decret2004]. We then focused our attention on the Final Year Project, whose regulatory
+framework is defined by the MESRS [@mesrs2004 ; @mesrs2005guide]. The limitations
+identified in its current management [@berrouche2007 ; @insaniyat2018] underscore the
+importance of modernising this process through a dedicated digital solution, whose study
+will be deepened in the following chapters.

@@ -1,0 +1,8 @@
+project:
+  title: "PFE"
+  render:
+    - index.qmd
+
+# execute:
+#   cache: true
+#   freeze: auto

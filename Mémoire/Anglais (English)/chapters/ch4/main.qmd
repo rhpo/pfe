@@ -1,0 +1,284 @@
+# Implementation and Results
+
+## Introduction
+
+This chapter presents the implementation phase of the system designed in the previous
+chapter. We will begin by justifying the choice of a web application, then detail the
+programming languages, tools, and frameworks selected, motivating each decision. Finally,
+we will illustrate the final result through screenshots of the main interfaces of the
+application.
+
+
+## Justification of the web application choice
+
+The choice to develop a web application, as opposed to a native desktop or mobile
+application, rests on several criteria directly related to the context of use of the
+system:
+
+- **Universal accessibility**: a web application is accessible from any browser, without
+  prior installation, which facilitates adoption by all four categories of actors (students,
+  lecturers, administration, companies).
+- **Centralised deployment**: a single instance of the system is deployed on a server,
+  which simplifies maintenance, updates, and data management.
+- **Cross-platform**: the application works independently of the operating system
+  (Windows, Linux, macOS) and the type of terminal (computer, tablet, smartphone).
+- **Reduced cost**: developing a single codebase covering all terminals avoids the
+  duplication of effort inherent in native cross-platform development.
+- **Real-time collaboration**: the client-server architecture allows multiple users to
+  simultaneously access the system's up-to-date data.
+
+These advantages make the web application the most suitable choice for a PFE management
+system intended for a university institution.
+
+## Languages and tools
+
+The implementation of the system relies on a set of languages and tools selected for their
+complementarity and suitability to the application's profile.
+
+### Programming languages
+
+- **HTML5** [@mdn2024]: the standard markup language for structuring web page content.
+  It constitutes the skeleton of all application views.
+- **CSS3** [@mdn2024css]: the stylesheet language used for formatting, layout, and
+  responsive design of the user interface.
+- **JavaScript (ES2022)** [@ecma2022]: the client-side programming language enabling page
+  interactivity, DOM manipulation, and asynchronous communication with the server.
+  JavaScript is the only language natively executed by web browsers, making it an
+  indispensable choice for the frontend.
+- **TypeScript** [@typescript2024]: a typed superset of JavaScript, used server-side
+  (Node.js) and client-side to ensure code reliability through static typing and
+  compile-time error detection. The choice of TypeScript over plain JavaScript is justified
+  by the significant reduction in runtime errors in a project of this scale.
+- **Go (Golang)** [@pike2012]: a compiled language designed by Google, used for developing
+  the backend REST API. Go was selected for its low memory footprint, native concurrency
+  management (goroutines), and the production of a standalone binary deployable without
+  external dependencies, which considerably simplifies deployment in a university context.
+
+### Development tools
+
+- **Neovim** [@neovim2024]: the main code editor, highly configurable and extensible,
+  used with dedicated plugins for Svelte, TypeScript, and Go.
+- **Git / GitHub**: a distributed version control system and code hosting platform,
+  enabling change tracking and collaboration.
+- **SQLite** [@sqlite2024]: an embedded relational database management system requiring no
+  dedicated server. The choice of SQLite over a client-server DBMS (PostgreSQL, MySQL) is
+  justified by the simplicity of deployment and the low load expected in a university
+  context, while offering ACID compliance and full SQL support.
+- **PlantUML**: a tool for generating UML diagrams from textual descriptions, used for
+  the modelling presented in the previous chapter.
+- **Quarto (LaTeX)**: a scientific publishing system used for writing the present thesis.
+
+## Frameworks
+
+### SvelteKit (Frontend)
+
+SvelteKit [@sveltekit2024] is a full-stack framework based on Svelte [@harris2018], using
+Node.js and TypeScript server-side. The choice of SvelteKit over the dominant JavaScript
+frameworks (React/Next.js, Vue.js/Nuxt, Angular) is justified by its compilation-based
+architecture: code is converted to optimised JavaScript at build time, without a virtual
+runtime on the client side. This results in a significantly lower initial load time and
+better perceived performance for the user.
+
+Its native handling of server-side rendering (SSR) and file-system-based routing
+considerably simplifies development. The application's user interface offers differentiated
+views according to the authenticated user's role (student, lecturer, administrator,
+company).
+
+### Fiber (Backend)
+
+Fiber [@fiber2024] is a web framework for Go inspired by Express.js, designed for
+high-performance applications. It relies on the Fasthttp HTTP engine, which offers
+significantly superior performance to Go's standard net/http package. The choice of Fiber
+is justified by its ease of use, comprehensive documentation, and middleware ecosystem
+(authentication, CORS, logging).
+
+The REST API developed with Fiber exposes secure endpoints and manages business logic as
+well as data persistence. The backend architecture follows the **Repository-Service-Handler**
+pattern:
+
+- **Repository**: the data access layer (SQL queries to SQLite).
+- **Service**: the business logic layer (validation, calculations, orchestration).
+- **Handler**: the presentation layer (HTTP endpoints, JSON serialisation).
+
+This strict separation of responsibilities ensures the maintainability, testability, and
+scalability of the solution.
+
+## Interface presentation
+
+This section presents screenshots of the main pages of the application, illustrating the
+final result of the implementation phase.
+
+### Administration interfaces
+
+The administrator has an overview of the system. As illustrated by @fig-admin-dashboard,
+the dashboard allows them to monitor the overall status of PFE processes in a clear and
+visual manner.
+
+The first part of this interface presents summary cards displaying the total number of
+students (with the number assigned), the number of submitted topics (with those pending or
+validated), and available lecturers. This provides an immediate view of key performance
+indicators.
+Interactive charts then detail the progression of the PFE lifecycle, illustrate student
+progression during the academic year as a curve, and break down the overall status of
+topics (validated, pending, rejected) through an intuitive pie chart to facilitate
+decision-making.
+
+![Administration dashboard, providing an overview of activity, statistics, and PFE progress status.](images/screenshots/admin-dashboard.png){#fig-admin-dashboard width="80%"}
+
+Topic management allows the administration to validate, assign, and filter the various
+topics proposed by lecturers and companies. @fig-admin-sujets shows this supervision
+interface in detail.
+
+This page is structured around a filterable table ("All", "Pending", "Validated",
+"Rejected") listing all PFE proposals. For each topic, the title, required group
+composition (individual, pair, trio), the topic initiator with their precise role
+(lecturer or company), and the submission date are shown.
+In addition, the status column displays colour-coded badges allowing rapid identification
+of the topic's state. The action column gives the administrator direct controls: they can,
+for example, assign validators to topics awaiting evaluation or unblock rejected topics.
+
+![Topic management interface, enabling the tracking, filtering, and validation of PFE proposals.](images/screenshots/admin-sujets.png){#fig-admin-sujets width="80%"}
+
+Once assignments are complete, the administrator schedules and manages defences. This
+interface, presented by @fig-admin-soutenances, centralises upcoming events.
+
+It provides a structured table listing all scheduled or pending defences. The planned date
+and time, the assigned room (e.g. "Room A101"), and the current status of the event (e.g.
+"Scheduled") are shown. Columns are also provided for the final grade and result once the
+defence has taken place.
+The administrator has filtering tools at the top of the page by date and by status, as
+well as a "Schedule a Defence" creation button. Each table row includes a "View" button
+giving access to the specific details of the appointment, jury, and assessed group.
+
+![Defence planning and management interface.](images/screenshots/admin-soutenances.png){#fig-admin-soutenances width="80%"}
+
+### Lecturer interfaces
+
+The lecturer dashboard provides quick access to their supervisions, the topics they propose,
+and the juries to which they are assigned. @fig-teacher-dashboard illustrates this
+personalised home page.
+
+The top of the interface highlights four key indicators: the number of students they
+supervise, the topics awaiting validation, the topics they have already proposed, and their
+availability status ("Available" by default). Quick access links ("Shortcuts") in the form
+of clearly highlighted buttons allow them to navigate directly to "My Topics", "Topics to
+Validate", or to "Edit Availability".
+In the centre of the screen, two panels inform the lecturer of crucial events: "Upcoming
+Defences", which lists their convocations as a jury member (with date, time, and location),
+and "Notifications", for unread and recent messages or alerts.
+
+![Lecturer dashboard summarising responsibilities, supervisions, juries, and proposals at a glance.](images/screenshots/teacher-dashboard.png){#fig-teacher-dashboard width="80%"}
+
+The topics page allows the lecturer to submit new topics via a dedicated form and to
+consult the validation status of their proposals, as shown by @fig-teacher-sujets.
+
+This view lists in table form the complete history of topics created by the lecturer. Each
+row shows the title of the proposal (e.g. "AI Chatbot for student services"), the required
+group size (Pair), the current status indicated by a visual badge (e.g. "PENDING"), and
+the proposal date.
+A main action button "Propose a new topic" is prominently displayed at the top right to
+enable new submissions easily. This centralises and simplifies the PFE submission process
+for teaching teams.
+
+![Interface for managing topics proposed by the lecturer.](images/screenshots/teacher-sujets.png){#fig-teacher-sujets width="80%"}
+
+### Student interfaces
+
+Upon login, the student accesses a summary dashboard indicating important dates and the
+status of their PFE clearly and concisely. @fig-student-dashboard gives an overview of
+this interface.
+
+The layout focuses on the essentials: statistical indicators show the status of their PFE
+(currently "IN PROGRESS"), the number of preferences they have already submitted for their
+topic choices, and their unread notifications. All these elements are accessible at a
+single glance.
+The student also has dedicated sections for their latest notifications and quick shortcuts
+to consult the global topic catalogue, manage their preferences, or access the detailed
+monitoring space for their PFE. These shortcuts facilitate smooth navigation without
+getting lost in secondary menus.
+
+![Student dashboard, displaying the search status, submitted preferences, and shortcuts to the main actions.](images/screenshots/student-dashboard.png){#fig-student-dashboard width="80%"}
+
+To express their choices, the student has access to the full catalogue and can submit
+their preferences. @fig-student-voeux shows the preference management interface.
+
+On this screen, the student can view and manage the ranked list of topics they are
+interested in. The system clearly indicates the allowed limit (e.g. "1 preference out of
+5 maximum"), providing a visual constraint that helps limit errors.
+Submitted preferences are displayed as information cards detailing the topic title, its
+identifier, its status, and its creation/addition date. For each choice, the student has
+the option to "Remove" it with a single click if they change their mind before the
+assignment period closes.
+
+![Preference expression and management page for the student.](images/screenshots/student-voeux.png){#fig-student-voeux width="80%"}
+
+The student's PFE space allows them to monitor the progress of their project. They can
+consult their supervisor's comments and interact chronologically, as illustrated by
+@fig-student-pfe.
+
+This view centralises information around the validated project: the "Topic" status with
+the assigned supervisor (or unassigned) and a possible co-supervisor (e.g. a "Company")
+are shown.
+Below, the "Progress Log" lists exchanges and the history of meetings. The student can
+add new interactions by entering the "Meeting Date" and writing descriptive "Notes" on the
+progress of their work. This digital logbook is essential for tracing task evolution and
+stakeholder involvement.
+
+![The "My PFE" space allowing the student to monitor their project progress and maintain a logbook.](images/screenshots/student-pfe.png){#fig-student-pfe width="80%"}
+
+### Company interfaces
+
+Industrial partners access the platform via a dedicated registration process: the company
+creates an account by entering their details (name, sector of activity, contact person),
+and this account is then subject to administrative verification before activation. Once
+validated by the administration, the company can log in and access their personalised
+space. Partners benefit from a tailored interface adapted to their needs, notably using an
+aesthetic and restful dark mode. @fig-company-dashboard shows this dashboard.
+
+For other profiles, the view presents company activity indicators: "Proposed Topics",
+"Supervised Students", and "Unread Notifications". This provides an immediate summary of
+their involvement in the institution's PFE programme.
+Specific panels display an overview of ongoing supervisions (currently empty if there are
+none yet) and the status of the latest topics submitted for validation. A "Propose a
+topic" shortcut is easily accessible, encouraging and streamlining the submission of
+industrial problem statements.
+
+![Company partner dashboard in dark mode, summarising proposals and supervisions.](images/screenshots/company-dashboard.png){#fig-company-dashboard width="80%"}
+
+Topic management allows the company to consult the history of their proposals and verify
+their validation status by the scientific committee. @fig-company-sujets shows this topic
+list.
+
+This table summarises all the company's submissions. Relevant details are shown, such as
+the title ("Cloud migration of infrastructure"), the domains, the required group type, and
+its status (e.g. "PENDING").
+This view emphasises the readability of statuses to avoid the company having to constantly
+contact the administration: they can see directly whether their proposal has been accepted,
+is under review, or has been validated.
+
+![Interface for managing topics submitted by the partner company.](images/screenshots/company-sujets.png){#fig-company-sujets width="80%"}
+
+The company can also formulate and submit new project proposals via a structured form
+facilitating evaluation by the institution. This form is visible in @fig-company-proposal.
+
+The form groups all mandatory fields marked with an asterisk: a text field for the "Topic
+Title", a detailed "Description" area for listing objectives and expected technologies, as
+well as dropdown menus to specify the "Level", "Specialisation", and "Group Type" (e.g.
+Individual - 1 student).
+An informative note subtly reminds users that the topic will only be visible in the
+catalogue after validation by specialist lecturers, reinforcing the transparency of the
+process. Once the data is entered, the main action button allows the proposal to be
+finalised.
+
+![New PFE topic proposal form for the company, including all required descriptive fields.](images/screenshots/company-proposal.png){#fig-company-proposal width="100%"}
+
+## Conclusion
+
+This chapter presented the concrete implementation of the system designed in the previous
+chapter. The choice of a web application is justified by universal accessibility,
+centralised deployment, and cross-platform compatibility. The client-server architecture
+combining SvelteKit (frontend) and Go/Fiber (backend) made it possible to develop a
+performant, maintainable application adapted to the Algerian university context. The
+developed interfaces cover all the identified functionalities: authentication, topic
+management, expression of preferences, assignment, pedagogical supervision, defence
+scheduling, and grading.

@@ -1,0 +1,43 @@
+
+# General Introduction {.unnumbered}
+
+\markboth{}{}
+
+In the Algerian university system, the Final Year Project (PFE — *Projet de Fin d'Études*)
+constitutes the compulsory culmination of every higher education programme, whether under
+the LMD system or the engineering curriculum. For the student, it represents the
+opportunity to mobilise all the competencies acquired throughout their training in order to
+address a concrete problem, whether carried out internally at the university or in
+collaboration with a partner company.
+
+Yet, despite its central importance in degree validation, the management of the PFE
+remains largely manual and unstructured within Algerian institutions today. Coordination
+between students, supervising lecturers, jury members, and administrative services still
+relies essentially on informal exchanges, spreadsheets, and emails, with no unified
+platform capable of ensuring the traceability, consistency, and efficiency of the process.
+
+This situation generates recurring dysfunctions: lost documents, delays in assignments,
+difficulties in pedagogical supervision, scheduling conflicts for defences, and the absence
+of structured archiving. Existing online learning platforms (Moodle, Canvas, Blackboard),
+although effective in their domain, offer no modules specifically designed to cover the
+complete lifecycle of a PFE.
+
+The objective of this thesis is to fill this gap by designing and developing a **dedicated
+web application for PFE management**, conceived specifically for the context of Algerian
+university institutions. The proposed solution covers the entire process: topic proposal
+and validation, expression of preferences, assignment, pedagogical supervision, thesis
+submission, jury formation, defence scheduling, grading, and result determination.
+
+This thesis is structured in four chapters:
+
+- The **first chapter** lays the theoretical framework by defining the PFE in the Algerian
+  educational context, identifying the actors involved, and analysing the dysfunctions of
+  current management practices.
+- The **second chapter** reviews the state of the art of existing solutions and presents
+  a case study conducted at the École Supérieure des Sciences et de la Technologie (ESST)
+  in Algiers, confirming the need for a dedicated solution.
+- The **third chapter** details the system design: requirements definition, actor
+  identification, and complete UML modelling (use cases, classes, sequences, and activity
+  diagrams).
+- The **fourth chapter** presents the concrete implementation: technology choices,
+  selected frameworks, and developed interfaces.

@@ -1,0 +1,118 @@
+# Généralités sur l'Éducation
+
+
+## Introduction
+
+Ce chapitre a pour vocation de poser le cadre conceptuel et contextuel dans lequel s'inscrit le présent travail, en adoptant une démarche progressive allant du général vers le particulier.
+
+Nous partons de l'acte fondamental d'apprendre, socle de toute réflexion pédagogique, pour nous intéresser ensuite à la manière dont les sociétés ont structuré cet apprentissage au sein de systèmes éducatifs formels, en nous appuyant sur le cas du système algérien.
+
+Cette progression nous mènera naturellement vers le Projet de Fin d'Études (PFE), épreuve de synthèse par excellence à travers laquelle l'étudiant mobilise l'ensemble des compétences acquises durant son cursus.
+
+Enfin, une analyse critique de la gestion actuelle des PFE dans les établissements universitaires algériens permettra de mettre en lumière les lacunes organisationnelles existantes, constituant ainsi le point de départ de la problématique qui motive le présent travail.
+
+## L'apprentissage
+
+L'apprentissage constitue l'une des activités les plus fondamentales de l'être humain. Depuis la préhistoire, l'*Homo sapiens* a développé sa capacité à accumuler, transmettre et transformer des connaissances, ce qui lui a permis de s'adapter à des environnements variés et de construire des civilisations complexes. Contrairement à d'autres espèces dont le comportement est essentiellement gouverné par l'instinct, l'être humain dépend largement de l'apprentissage pour acquérir les compétences nécessaires à sa survie et à son épanouissement.
+
+Du point de vue des sciences cognitives, l'apprentissage est défini comme un processus par lequel un individu acquiert de nouvelles connaissances, compétences, comportements ou valeurs à travers l'expérience, l'étude, l'enseignement ou la pratique [@anderson1982]. Ce processus repose sur des mécanismes neurologiques complexes, notamment la plasticité synaptique et la mémoire à long terme, qui permettent au cerveau de se reconfigurer en réponse aux expériences vécues [@anderson2000].
+
+### Aperçu historique de l'éducation
+
+L'histoire de l'éducation en Occident trouve ses racines dans la Grèce antique, avec l'émergence des premières écoles philosophiques. Parmi les plus célèbres, l'**Académie de Platon** - fondée vers 387 av. JC. - et le **Lycée d'Aristote** - fondé en 335 av. J.-C., également connu sous le nom d'école péripatéticienne - ont jeté les bases du raisonnement logique et de l'observation systématique [@lebrun2003]. Au Lycée (@fig-aristote), Aristote privilégiait une approche empirique et encyclopédique du savoir, enseignant souvent en arpentant les jardins avec ses disciples. @lynch1972
+
+\vspace{1cm}
+
+![Représentation de l'école d'Aristote @lynch1972](/images/Schule_des_Aristoteles.jpg){#fig-aristote fig-align="center" width="50%"}
+
+Au Moyen Âge, l'enseignement se structure autour des sept arts libéraux avant l'apparition des premières universités au XIIe siècle, organisées en facultés (Théologie, Droit, Médecine, Arts) [@lebrun2003]. L'époque moderne voit l'émergence des collèges jésuites et de structures d'enseignement royal comme le Collège de France. Cette période est marquée par la publication d'ouvrages pédagogiques influents comme celui de Reixac en 1749 (@fig-reixac).
+
+![Ouvrage pédagogique : *Instruccions per a l'ensenyança de minyons* (1749) @reixac1749](/images/Reixac.jpg){#fig-reixac fig-align="center" width="35%"}
+
+**Enfin**, l'époque contemporaine marque la généralisation de l'instruction obligatoire et gratuite au XIXe siècle, transformant l'éducation en un droit fondamental et un service public universel [@lebrun2003].
+
+
+### Pourquoi apprend-on ?
+
+La question du *pourquoi* de l'apprentissage est à la fois philosophique et pragmatique. Plusieurs motivations fondamentales expliquent l'impulsion naturelle de l'être humain à apprendre [@anderson2000] :
+
+- **Réussir et s'épanouir :** l'apprentissage est le moteur de la réussite personnelle et professionnelle. Il permet à l'individu d'atteindre ses objectifs, de surmonter les obstacles et de trouver sa place dans la société.
+- **Obtenir une reconnaissance sociale et des diplômes :** dans les sociétés modernes, les certifications et diplômes constituent des preuves tangibles des connaissances et compétences acquises. Ils conditionnent l'accès à l'emploi, à des fonctions à responsabilités et à une ascension sociale.
+- **Se former et s'adapter au marché du travail :** dans un monde en perpétuelle mutation technologique et économique, la formation continue est devenue une nécessité. Les compétences d'hier peuvent devenir obsolètes en quelques années, d'où l'importance de rester en apprentissage permanent.
+- **Contribuer au progrès collectif :** au-delà de l'intérêt individuel, l'apprentissage nourrit l'innovation scientifique, technologique et culturelle. Chaque génération transmet et enrichit le patrimoine de connaissances à la suivante.
+
+Ces motivations justifient l'organisation, par les sociétés, de systèmes éducatifs formels destinés à structurer et à optimiser le processus d'apprentissage dès le plus jeune âge.
+
+
+## Structure et parcours de formation
+
+L'éducation formelle est le mécanisme institutionnel par lequel les sociétés organisent le transfert de connaissances et de compétences entre générations. Elle est structurée en paliers successifs, chacun ayant ses objectifs pédagogiques propres, menant progressivement l'individu de l'acquisition des savoirs de base jusqu'à une spécialisation professionnelle avancée.
+
+En Algérie, comme dans la majorité des pays, le système éducatif est organisé en plusieurs cycles définis par le ministère de l'Éducation nationale et le ministère de l'Enseignement supérieur et de la Recherche scientifique (MESRS) [@loi9905]. Ce parcours, illustré par la @fig-parcours-algerie, se décompose en quatre grands paliers : l'enseignement primaire, l'enseignement moyen, l'enseignement secondaire et l'enseignement supérieur. Chaque palier sanctionne la réussite de l'élève par un diplôme ou un examen national conditionnant l'accès au cycle suivant.
+
+![Parcours scolaire de l'être humain (en Algérie) @france-edu-intl](/images/education.png){
+    #fig-parcours-algerie
+    fig-align="center"
+    width="85%"
+    fig-pos="H"
+}
+
+### L'enseignement primaire
+
+L'enseignement primaire constitue la première étape de la scolarisation obligatoire. En Algérie, il s'étend sur cinq années (de l'âge de 6 ans à 11 ans environ) et couvre les fondamentaux : lecture, écriture, calcul, sciences naturelles et éducation civique [@loi9905]. L'objectif principal est de doter l'enfant des outils cognitifs et sociaux nécessaires à la poursuite de sa scolarité. À l'issue de ce cycle, l'élève passe l'**Examen de Fin de Cycle Primaire** et obtient le **Certificat d'Études Primaires** (CEP).
+
+### L'enseignement moyen
+
+Le cycle moyen (collège) dure quatre ans en Algérie, couvrant les classes de 1ère AM à 4ème AM [@loi9905]. Il approfondit et élargit les connaissances acquises en primaire, en introduisant des disciplines supplémentaires telles que les mathématiques approfondies, les sciences physiques, l'histoire-géographie et les langues étrangères. Ce cycle se conclut par le **Brevet d'Enseignement Moyen (BEM)**, examen national qui conditionne l'accès au lycée.
+
+### L'enseignement secondaire
+
+Le lycée s'étale sur trois années, couvrant les classes de 1ère AS à 3ème AS, et représente une étape charnière dans l'orientation scolaire de l'élève [@loi9905]. Les élèves se spécialisent dans des filières (sciences, lettres, mathématiques, technique, gestion...) en fonction de leurs aptitudes et projets professionnels. Ce cycle se termine par l'obtention du **Baccalauréat**, diplôme national donnant accès à l'enseignement supérieur, souvent considéré comme le premier diplôme officiel de l'élève.
+
+### L'enseignement supérieur
+
+L'enseignement supérieur représente le sommet de la formation académique formelle. En Algérie, il est dispensé dans des universités, des écoles supérieures, des instituts et des centres universitaires répartis à travers le territoire national [@loi9905]. Deux grands systèmes de formation coexistent.
+
+#### a) Le système LMD (Licence - Master - Doctorat)
+
+> Le LMD est un système mis en place en Algérie en application du décret exécutif n°04-371 du 21 novembre 2004. Il vise, selon un schéma innovant, l’intégration de l’Université dans le développement économique et l’harmonisation du système d’enseignement supérieur avec le reste du monde. [@univalger]
+
+Introduit en Algérie à partir de 2004-2005 dans le cadre d'une réforme visant à harmoniser le système universitaire algérien avec les standards européens (processus de Bologne) [@decret2004 ; @berrouche2007], le système LMD est organisé en trois grades, comme l'illustre la @fig-lmd. Dans ce cadre, un **crédit** est l'unité qui mesure la charge de travail de l'étudiant - cours, travaux dirigés, travaux pratiques et travail personnel - équivalant à environ **20 à 25 heures de travail par semestre** [@mesrs2023 ; @mesrs2005guide]. Chaque semestre correspond à 30 crédits, et les crédits sont **capitalisables** : une fois validés, ils sont définitivement acquis, même en cas de redoublement [@mesrs2005guide].
+
+- **Licence (L) :** premier grade universitaire, obtenu en trois ans (six semestres) après le baccalauréat. La Licence valide **180 crédits** et permet soit une insertion professionnelle directe, soit la poursuite en Master [@mesrs2005guide].
+- **Master (M) :** second grade, obtenu en deux ans supplémentaires (quatre semestres) après la Licence. Le Master valide **120 crédits supplémentaires** et approfondit la spécialisation. Il existe deux types : le Master académique (orienté recherche) et le Master professionnel (orienté marché du travail) [@mesrs2005guide].
+- **Doctorat (D) :** troisième grade, accessible par voie de concours après l'obtention du Master. Il est décerné au terme d'un travail de recherche original d'une durée minimale de trois ans et constitue le plus haut grade académique [@decret2004].
+
+![Structure du système LMD en Algérie - progression semestrielle et crédits capitalisables @mesrs2023](/images/lmd-timeline.png){#fig-lmd fig-align="center" width="80%"}
+
+#### b) La formation d'ingénieur
+
+Parallèlement au système LMD, plusieurs établissements algériens dispensent une formation d'ingénieur d'une durée de cinq ans après le baccalauréat, délivrant un **diplôme d'ingénieur d'État** [@mesrs2004]. Cette formation est proposée non seulement par les Écoles Nationales Supérieures (ENS) et les Écoles Polytechniques, mais également par certaines universités telles que l'USTHB (Université des Sciences et de la Technologie Houari Boumédiène) ou l'Université de Blida. Ce cursus est plus intégré et moins modulaire que le LMD, avec un programme national défini par le MESRS. La formation alterne enseignements théoriques, travaux pratiques et stages en entreprise, et se conclut obligatoirement par un Projet de Fin d'Études [@insaniyat2018].
+
+| Critère | Système LMD | Formation Ingénieur |
+|---|---|---|
+| Durée totale | 3 ans (Licence) + 2 ans (Master) | 5 ans |
+| Diplôme obtenu | Licence / Master  |
+| Modularité | Élevée (semestres, crédits capitalisables)  |
+| Validation finale | Module PFE (Licence) / Semestre PFE (Master)  |
+| Orientation | Académique ou professionnelle |
+| Accès | Baccalauréat (toutes filières) |
+
+: Comparaison entre le système LMD et la formation d'ingénieur en Algérie [@decret2004 ; @mesrs2004] {tbl-colwidths="[30,35,35]"}
+
+
+## Projet de Fin d'Études (PFE)
+
+À ce stade du parcours académique, une question naturelle se pose : comment l'étudiant valide-t-il son cycle d'études ? La réponse tient en un événement clé : le Projet de Fin d'Études ou PFE.
+
+D'une manière générale, les cursus universitaires, qu'il s'agisse de la licence ou du master, se clôturent par des projets de fin d'étude. Le PFE est une épreuve académique qui fait l'objet d'une note finale et qui sanctionne la fin d'un cycle de formation supérieure [@mesrs2004]. Il est obligatoire chez *la majorité* des formations de licence, et *la totalité* des formations de master.
+
+Il constitue pour l'étudiant l'occasion de mobiliser l'ensemble des connaissances et compétences acquises tout au long de sa formation pour répondre à une problématique concrète, qu'elle soit d'ordre scientifique, technologique ou organisationnel, en rédigeant un document écrit (le **Mémoire**), et généralement une **partie applicative** de la solution, en le soutenant devant un jury.
+
+Le PFE est reconnu internationalement sous diverses appellations : *Senior Thesis* (États-Unis), *Final Year Project* (Royaume-Uni), *Travail de Bachelor* ou *Travail de Master* (Suisse et pays francophones). En Algérie, sa place dans le cursus varie selon le type de formation [@mesrs2004].
+
+<!-- Here was the PFE section that I moved to chapter 2 -->
+
+## Conclusion
+
+Ce premier chapitre a permis de poser les bases théoriques et contextuelles de notre étude. Partant de la définition cognitive de l'apprentissage [@anderson1982], nous avons retracé l'évolution historique des systèmes éducatifs [@lebrun2003] avant d'ancrer notre analyse dans le contexte algérien, régi par la loi d'orientation de 1999 [@loi9905] et la réforme LMD de 2004 [@decret2004]. Nous avons ensuite focalisé notre attention sur le Projet de Fin d'Études, dont le cadre réglementaire est défini par le MESRS [@mesrs2004 ; @mesrs2005guide]. Les limites identifiées dans sa gestion actuelle [@berrouche2007 ; @insaniyat2018] soulignent l'importance de moderniser ce processus par le biais d'une solution numérique dédiée, dont l'étude sera approfondie dans les chapitres suivants.

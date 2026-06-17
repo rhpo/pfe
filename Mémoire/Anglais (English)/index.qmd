@@ -1,0 +1,95 @@
+---
+title: "Final Year Project Management System (PFE)"
+subtitle: "Final Year Project Report"
+author: "HADID Rami"
+date: last-modified
+lang: en
+csl: norms/ieee.csl
+bibliography: bibliography/references.bib
+
+format:
+  html:
+    css:             styles.css
+    toc:             true
+    lof:             true
+    theme:           cosmo
+    number-sections: true
+  pdf:
+    title-block:     false
+    documentclass: report
+    classoption: [a4paper, 12pt]
+    geometry:
+      - top=2.3cm
+      - bottom=2.3cm
+      - left=2.3cm
+      - right=2.3cm
+    include-in-header: config/header.tex
+    include-before-body: config/layout.tex
+    toc: true
+    lof: false
+    number-sections: true
+    colorlinks: true
+    linkcolor: black
+    urlcolor: blue
+    citecolor: black
+    filecolor: black
+    fig-pos: htbp
+---
+
+
+```{=latex}
+\clearpage
+\listoffigures
+```
+
+{{< include chapters/intro/main.qmd >}}
+
+{{< include chapters/ch1/main.qmd >}}
+
+{{< include chapters/ch2/main.qmd >}}
+
+{{< include chapters/ch3/main.qmd >}}
+
+{{< include chapters/ch4/main.qmd >}}
+
+# General Conclusion and Perspectives {.unnumbered}
+
+\markboth{General Conclusion and Perspectives}{}
+
+This thesis addressed the problem of managing Final Year Projects (PFE) within Algerian
+university institutions, following a progressive approach from the analysis of the existing
+context through to the delivery of an operational solution.
+
+The first chapter established the theoretical framework by situating the PFE within the
+Algerian educational system and identifying the recurring dysfunctions in its current
+management: informal coordination, lack of traceability, and information loss.
+The second chapter confirmed these findings through a comparative analysis of existing
+platforms and a case study conducted at the ESST in Algiers, demonstrating the absence of
+a solution adapted to the Algerian university context.
+
+Drawing on these findings, the third chapter presented the complete system design by
+defining the functional requirements of each actor and formalising the expected behaviour
+through rigorous UML modelling. The fourth chapter translated this design into reality by
+detailing the technology choices made (SvelteKit for the frontend, Go/Fiber for the backend,
+and SQLite for persistence) and presenting the developed interfaces covering the entire PFE
+lifecycle.
+
+The resulting solution meets the identified requirements: it offers a unified platform
+covering topic proposal, expression of preferences, assignment, pedagogical supervision,
+defence scheduling, and grading. Its lightweight architecture and dependency-free deployment
+make it particularly well suited to the constraints of Algerian university institutions.
+
+As future directions, several areas for improvement can be envisioned: the integration of
+a real-time notification system, the automatic generation of administrative documents
+(defence minutes, certificates), the addition of an advanced statistical analysis module
+for decision-making, and the extension of the application to other institutions via a
+multi-tenant architecture.
+
+
+
+# Bibliography {.unnumbered}
+
+\markboth{Bibliography}{}
+
+::: {#refs}
+:::

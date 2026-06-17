@@ -1,0 +1,97 @@
+---
+title: "Système de Gestion des Projets de Fin d'Études (PFE)"
+subtitle: "Rapport de Projet de Fin d'Études"
+author: "HADID Rami"
+date: last-modified
+lang: fr
+csl: norms/ieee.csl
+bibliography: bibliography/references.bib
+
+format:
+  html:
+    css:             styles.css
+    toc:             true
+    lof:             true
+    theme:           cosmo
+    number-sections: true
+  pdf:
+    title-block:     false
+    documentclass: report
+    classoption: [a4paper, 12pt]
+    geometry:
+      - top=2.3cm
+      - bottom=2.3cm
+      - left=2.3cm
+      - right=2.3cm
+    include-in-header: config/header.tex
+    include-before-body: config/layout.tex
+    toc: true
+    lof: false
+    number-sections: true
+    colorlinks: true
+    linkcolor: black
+    urlcolor: blue
+    citecolor: black
+    filecolor: black
+    fig-pos: htbp
+---
+
+
+```{=latex}
+\clearpage
+\listoffigures
+```
+
+{{< include chapters/intro/main.qmd >}}
+
+{{< include chapters/ch1/main.qmd >}}
+
+{{< include chapters/ch2/main.qmd >}}
+
+{{< include chapters/ch3/main.qmd >}}
+
+{{< include chapters/ch4/main.qmd >}}
+
+# Conclusion Générale et Perspectives {.unnumbered}
+
+\markboth{Conclusion Générale et Perspectives}{}
+
+Le présent mémoire a abordé la problématique de la gestion des Projets de Fin d'Études
+au sein des établissements universitaires algériens, en suivant une démarche progressive
+allant de l'analyse du contexte existant jusqu'à la réalisation d'une solution
+opérationnelle.
+
+Le premier chapitre a établi le cadre théorique en situant le PFE dans le système
+éducatif algérien et en identifiant les dysfonctionnements récurrents de sa gestion
+actuelle : coordination informelle, absence de traçabilité et perte d'information.
+Le deuxième chapitre a confirmé ces constats par une analyse comparative des plateformes
+existantes et une étude de cas menée à l'ESST d'Alger, démontrant l'absence d'une
+solution adaptée au contexte universitaire algérien.
+
+Fort de ces constats, le troisième chapitre a présenté la conception complète du
+système en définissant les besoins fonctionnels de chaque acteur et en formalisant
+le comportement attendu à travers une modélisation UML rigoureuse. Le quatrième
+chapitre a concrétisé cette conception en détaillant les choix technologiques retenus
+(SvelteKit pour le frontend, Go/Fiber pour le backend et SQLite pour la persistance)
+et en présentant les interfaces développées couvrant l'ensemble du cycle de vie d'un PFE.
+
+La solution réalisée répond aux exigences identifiées : elle offre une plateforme
+unifiée couvrant la proposition de sujets, l'expression de vœux, l'affectation, le
+suivi pédagogique, la planification des soutenances et la notation. Son architecture
+légère et son déploiement sans dépendances lourdes la rendent particulièrement adaptée
+aux contraintes des établissements universitaires algériens.
+
+À titre de perspectives, plusieurs axes d'amélioration peuvent être envisagés :
+l'intégration d'un système de notifications en temps réel, la génération automatique
+de documents administratifs (PV de soutenance, attestations), l'ajout d'un module
+d'analyse statistique avancée pour le pilotage décisionnel, ainsi que l'ouverture de
+l'application à d'autres établissements via une architecture multi-tenant.
+
+
+
+# Bibliographie {.unnumbered}
+
+\markboth{Bibliographie}{}
+
+::: {#refs}
+:::

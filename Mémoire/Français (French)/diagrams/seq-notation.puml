@@ -1,0 +1,43 @@
+@startuml
+scale 1.0
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantBackgroundColor #EEF5FF
+skinparam sequenceParticipantBorderColor #3366CC
+
+actor "Enseignant\n(Membre du jury)" as J
+actor "Enseignant\n(Superviseur)" as Sup
+participant "Système" as S
+database "SGBD" as DB
+
+J -> S : Soumet ses notes\n(critères 1 à 4, chacun sur 4)
+activate S
+S -> S : Valide les notes\n(chaque critère entre 0 et 4)
+S -> DB : INSERT INTO jury_grades\n(defense_id, jury_member_id,\ncriterion1, criterion2,\ncriterion3, criterion4)
+activate DB
+DB --> S : Confirmation
+deactivate DB
+deactivate S
+
+Sup -> S : Soumet l'évaluation\nde l'encadrant (critère 5 sur 4)
+activate S
+S -> DB : INSERT INTO\nsupervisor_evaluations\n(pfe_assignment_id,\nevaluator_id, criterion5)
+activate DB
+DB --> S : Confirmation
+deactivate DB
+deactivate S
+
+== Délibération du jury ==
+
+J -> S : Demande le calcul\nde la note finale
+activate S
+S -> S : Calcule la note finale\n(somme des 5 critères = /20)
+S -> DB : UPDATE defenses\nSET final_grade = ?\nWHERE id = ?
+activate DB
+DB --> S : Confirmation
+deactivate DB
+S --> J : Affiche la note finale
+S -> DB : INSERT INTO notifications\n(recipient_id,\ntype = 'grading_complete')
+activate DB
+deactivate DB
+deactivate S
+@enduml

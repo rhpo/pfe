@@ -1,0 +1,41 @@
+@startuml
+scale 1.2
+skinparam sequenceArrowThickness 1.5
+skinparam sequenceParticipantBackgroundColor #EEF5FF
+skinparam sequenceParticipantBorderColor #3366CC
+
+actor "Étudiant" as E
+participant "Système" as S
+database "SGBD" as DB
+
+E -> S : Consulte le catalogue de sujets
+activate S
+S -> DB : SELECT * FROM pfe_subjects\nWHERE status = 'valide'\nAND academic_year_id = ?
+activate DB
+DB --> S : Liste des sujets disponibles
+deactivate DB
+S --> E : Affiche les sujets\n(filtrés par spécialité et domaine)
+deactivate S
+
+E -> S : Soumet ses vœux classés\npar ordre de préférence
+activate S
+S -> DB : SELECT COUNT(*) FROM wishes\nWHERE student_id = ?\nAND academic_year_id = ?
+activate DB
+DB --> S : Nombre de vœux existants
+deactivate DB
+S -> S : Vérifie la limite\nde vœux autorisés
+
+alt Limite non atteinte
+  S -> DB : INSERT INTO wishes\n(student_id, subject_id,\nstatus = 'en_attente')
+  activate DB
+  DB --> S : Confirmation
+  deactivate DB
+  S --> E : Vœux enregistrés
+  S -> DB : INSERT INTO notifications\n(recipient_id, type = 'new_wish')
+  activate DB
+  deactivate DB
+else Limite atteinte
+  S --> E : Erreur : nombre maximal\nde vœux atteint
+end
+deactivate S
+@enduml
