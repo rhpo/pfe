@@ -1,7 +1,7 @@
 
 <div align="center">
 
-  <img src="static/logo-readme.svg" height="150" alt="ESST Logo" />
+  <img src="Réalisation/static/logo-readme.svg" height="150" alt="ESST Logo" />
 
   <h1>PFELMS</h1>
   <p><strong>Academic Project Management Platform</strong></p>
